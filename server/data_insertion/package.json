@@ -1,0 +1,6 @@
+{
+  "type": "module",
+  "devDependencies": {
+    "moment": "^2.29.4"
+  }
+}
