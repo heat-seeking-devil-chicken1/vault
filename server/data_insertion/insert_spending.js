@@ -16,7 +16,7 @@ async function insertSpending() {
       const cat_id = Math.floor(Math.random() * 6) + 1;
       const sql_query =
         "INSERT INTO spending(user_id, amount, category_id, dates) VALUES($1, $2, $3, $4)";
-      const values = [user[i], amount, cat_id, "2022-07-18"];
+      const values = [user.id, amount, cat_id, "2022-07-18"];
       const result2 = await db.query(sql_query, values);
   
     }
