@@ -1,5 +1,4 @@
-const { models } = require('mongoose');
-const UserModels = require('../models/userModels.js');
+const db = require("../models/database.js");
 const bcrypt = require('bcryptjs');
 
 const userController = {};
@@ -7,27 +6,18 @@ const userController = {};
 /**
  * createUser - create and save a new User into the database.
  */
-userController.createUser = (req, res, next) => {
+userController.createUser = async (req, res, next) => {
+  try{
   console.log('Entered createUser');
   console.log(req.body);
   const { username, password } = req.body;
-  console.log(username);
-
-  UserModels.UserLogin.create({
-    username,
-    password,
-  })
-    .then((data) => {
-      console.log(data);
-      res.locals.user = data;
-      return next();
-    })
-    .catch((err) => {
-      next({
+ 
+  } catch(err) {
+     return next({
         log: `userController.createUser: ERROR: ${err}`,
         message: { err: 'Error occurred when creating user.' },
       });
-    });
+  }
 };
 
 /**
