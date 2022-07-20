@@ -21,14 +21,14 @@ export function SpendingDoughnutChart() {
       {
         label: "# of Votes",
         data: [
-          // parseFloat(userInfo.categories[0].sum.slice(1).split(",").join("")),
-          // parseFloat(userInfo.categories[1].sum.slice(1).split(",").join("")),
-          // parseFloat(userInfo.categories[2].sum.slice(1).split(",").join("")),
-          // parseFloat(userInfo.categories[3].sum.slice(1).split(",").join("")),
-          // parseFloat(userInfo.categories[4].sum.slice(1).split(",").join("")),
-          // parseFloat(userInfo.categories[5].sum.slice(1).split(",").join("")),
-          13,
-          6, 8, 3, 2, 1,
+          parseFloat(userInfo.categories[0].sum.slice(1).split(",").join("")),
+          parseFloat(userInfo.categories[1].sum.slice(1).split(",").join("")),
+          parseFloat(userInfo.categories[2].sum.slice(1).split(",").join("")),
+          parseFloat(userInfo.categories[3].sum.slice(1).split(",").join("")),
+          parseFloat(userInfo.categories[4].sum.slice(1).split(",").join("")),
+          parseFloat(userInfo.categories[5].sum.slice(1).split(",").join("")),
+          // 13,
+          // 6, 8, 3, 2, 1,
         ],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
