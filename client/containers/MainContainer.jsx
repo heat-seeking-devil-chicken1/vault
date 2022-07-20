@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Component } from "react";
 import "../stylesheets/styles.scss";
-import Header from "../components/Header.jsx";
+import Header from "../comps/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import { CategorySpendingCard } from "../comps/CategorySpendingCard.jsx";
 import { MonthlySpendingCard } from "../comps/MonthlySpendingCard.jsx";

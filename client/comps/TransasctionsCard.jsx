@@ -11,8 +11,8 @@ export function TransactionsCard() {
         display: "flex",
         flexDirection: "row",
         padding: "10px",
-        alignItems: "center",
-        justifyContent: "flex-start",
+        alignItems: "flex-start",
+        justifyContent: "center",
         padding: "10px",
         borderRadius: "20px",
       }}
