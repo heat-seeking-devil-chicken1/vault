@@ -38,14 +38,14 @@ async function(accessToken, refreshToken, profile, cb) {
 
   console.log('find result', findResult) 
 
-  if (!findResult.oid) {
-    const addResult = await db.query(add_query);
-    console.log('add result', addResult)
-  }
-  console.log('Value: ', value);
+  // if (!findResult.oid) {
+  //   const addResult = await db.query(add_query, value);
+  //   console.log('add result', addResult)
+  // }
+  // console.log('Value: ', value);
 
-  const addResult = await db.query(addQuery, value);
-  console.log('add result', addResult)
+  // const addResult = await db.query(addQuery, value);
+  // console.log('add result', addResult)
   
   // INSERT INTO user_info(googleid) \
   //                     SELECT googleid \
