@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, "../client")));
 
 // router for transactions
-// app.use("/transactions", transactionRouter);
+app.use("/transactions", transactionRouter);
 
 // router for login
 app.use("/login", loginRouter);

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const loginController = require('../controllers/loginController');
+const loginController = require("../controllers/loginController");
 
 router.post('/', loginController.verifyUser, (req, res) => res.send(200));
 
