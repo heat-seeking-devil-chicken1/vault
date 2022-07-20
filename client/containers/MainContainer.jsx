@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
+import { Grid, Container } from '@mui/material';
 import "../stylesheets/styles.scss";
 import Header from "../comps/Header.jsx";
 import Footer from "../components/Footer.jsx";
@@ -29,36 +30,53 @@ export function MainContainer() {
     }
   }, [userInfo]);
 
+  // Fixed number of columns
+  const gridContainer = {
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gridAutoRows: "minmax(400px, 1fr)",
+    marginTop: "40px",
+    height: "93vh"
+  };
+
+  // Variable number of columns
+  const gridContainer2 = {
+    display: "grid",
+    gridAutoColumns: "1fr",
+    gridAutoFlow: "column"
+  };
+
   return (
     <>
-      <div className="grid-container">
+      <Container maxWidth="false">
         <InfoContext.Provider value={[userInfo, setUserInfo]}>
           <Header />
-          <div id="container">
-            <div className="Cash-Flow">
+          <Grid container spacing={4} className="outer-grid" direction="column" sx={gridContainer}>
+            <Grid item lg>
+              <WelcomeUser />
+            </Grid>
+            <Grid item lg>
               <CashflowCard></CashflowCard>
-            </div>
-            <div className="Annual-Forecast">
-              <AnnualForecastCard></AnnualForecastCard>
-            </div>
-            <div className="Monthly-Spendings">
-              <MonthlySpendingCard></MonthlySpendingCard>
-            </div>
-            <div className="Category-Spendings">
-              <CategorySpendingCard></CategorySpendingCard>
-            </div>
-            <div className="Transactions">
-              <TransactionsCard></TransactionsCard>
-            </div>
-            <div className="User-Area">
-              <WelcomeUser></WelcomeUser>
-            </div>
-          </div>
+            </Grid>
+            <Grid item lg>
+              <AnnualForecastCard />
+            </Grid>
+
+            <Grid item lg>
+              <MonthlySpendingCard />
+            </Grid>
+            <Grid item lg>
+              <CategorySpendingCard />
+            </Grid>
+            <Grid item lg>
+              <TransactionsCard />
+            </Grid>
+          </Grid>
         </InfoContext.Provider>
         <div className="footer">
           <Footer />
         </div>
-      </div>
+      </Container>
     </>
   );
 }

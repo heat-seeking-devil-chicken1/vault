@@ -12,12 +12,14 @@ export function CategorySpendingCard() {
       elevation={12}
       sx={{
         height: "100%",
-        width: "100%",
-        borderRadius: "20px",
-        padding: "10px",
+        width: "auto",
         display: "flex",
         flexDirection: "column",
+        padding: "40px",
         alignItems: "center",
+        justifyContent: "flex-start",
+        padding: "10px",
+        borderRadius: "20px",
       }}
     >
       <Typography
@@ -30,7 +32,7 @@ export function CategorySpendingCard() {
       <Box
         sx={{
           display: "flex",
-          height: "100%",
+          maxHeight: "100%",
           width: "100%",
           flexDirection: "column",
           justifyContent: "center",

@@ -9,11 +9,13 @@ export function WelcomeUser() {
     <Paper
       elevation={12}
       sx={{
-        width: "100%",
         height: "100%",
+        width: "auto",
         display: "flex",
-        flexDirection: "row",
-        alignItems: "flex-start",
+        flexDirection: "column",
+        padding: "10px",
+        alignItems: "center",
+        justifyContent: "flex-start",
         padding: "10px",
         borderRadius: "20px",
       }}

@@ -57,12 +57,14 @@ export function MonthlySpendingCard() {
       elevation={12}
       sx={{
         height: "100%",
-        width: "100%",
-        borderRadius: "20px",
-        padding: "10px",
+        width: "auto",
         display: "flex",
         flexDirection: "column",
+        padding: "10px",
         alignItems: "center",
+        justifyContent: "flex-start",
+        padding: "10px",
+        borderRadius: "20px",
       }}
     >
       <Typography
@@ -75,7 +77,7 @@ export function MonthlySpendingCard() {
       <Box
         sx={{
           display: "flex",
-          height: "100%",
+          maxHeight: "100%",
           width: "100%",
           flexDirection: "column",
           justifyContent: "center",

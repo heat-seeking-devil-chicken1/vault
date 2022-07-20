@@ -51,6 +51,7 @@ const Header = (props) => {
         background: "lightgrey",
         justifyContent: "center",
         alignItems: "center",
+        marginBottom: "40px",
       }}
     >
       <Box

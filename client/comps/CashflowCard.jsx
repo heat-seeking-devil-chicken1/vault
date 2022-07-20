@@ -32,8 +32,8 @@ export function CashflowCard() {
     <Paper
       elevation={12}
       sx={{
-        width: "100%",
         height: "100%",
+        width: "auto",
         display: "flex",
         flexDirection: "column",
         padding: "10px",
@@ -52,7 +52,7 @@ export function CashflowCard() {
       </Typography>
       <Box
         sx={{
-          height: "100%",
+          maxHeight: "100%",
           width: "100%",
           display: "flex",
           flexDirection: "column",

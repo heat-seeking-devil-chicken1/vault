@@ -50,5 +50,11 @@ export function SpendingDoughnutChart() {
       },
     ],
   };
-  return <Doughnut data={data} />;
+  return <>
+    <div className="chartDiv">
+      <Doughnut data={data} />
+    </div>
+  </>
+
+    ;
 }

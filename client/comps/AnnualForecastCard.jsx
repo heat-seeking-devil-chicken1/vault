@@ -6,13 +6,13 @@ export function AnnualForecastCard() {
     <Paper
       elevation={12}
       sx={{
-        width: "100%",
         height: "100%",
+        width: "auto",
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
         padding: "10px",
-        alignItems: "flex-start",
-        justifyContent: "center",
+        alignItems: "center",
+        justifyContent: "flex-start",
         padding: "10px",
         borderRadius: "20px",
       }}
