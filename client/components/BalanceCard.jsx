@@ -2,6 +2,7 @@ import React from 'react';
 import IndividualBalances from './IndividualBalances.jsx';
 
 const BalanceCard = ({ balanceArray }) => {
+  console.log(balanceArray)
   const balanceElems = balanceArray.map((balanceData, i) => {
     return (
       <IndividualBalances
@@ -13,8 +14,8 @@ const BalanceCard = ({ balanceArray }) => {
   });
 
   return (
-    <div className='BalanceCard Card'>
-      <div className='cardHeader'>Balances</div>
+    <div className='stats-accounts-card stats-balances card'>
+      <div className='cardHeader'>Balance</div>
       {balanceElems}
     </div>
   );

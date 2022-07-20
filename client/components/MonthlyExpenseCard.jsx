@@ -4,9 +4,9 @@ const MonthlyExpenseCard = (props) => {
   const { savings } = props;
   const monthlyExpenses = Math.abs(savings[0]).toFixed(2);
   return (
-    <div className='Card'>
+    <div className='stats-overview-card'>
       <div className='cardHeader'> Monthly Expenses </div>
-      <div>${monthlyExpenses}</div>
+      <div className='cardAmount'>${monthlyExpenses}</div>
     </div>
   );
 };
