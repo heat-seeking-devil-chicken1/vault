@@ -11,14 +11,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, "../client")));
 
-// router for transactions
-app.use("/transactions", transactionRouter);
-
-// router for login
-app.use("/login", loginRouter);
-
 // router for signup
 app.use("/signup", signupRouter);
+
+// router for login
+app.use("/login", loginRouter,
+(req, res) => res.redirect('/transactions'));
+
+// router for transactions
+app.use("/transactions", transactionRouter);
 
 // oaauth signup
 // app.use()

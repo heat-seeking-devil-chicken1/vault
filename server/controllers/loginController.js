@@ -16,14 +16,17 @@ loginController.verifyUser = async (req, res, next) => {
     // conditional to check if password is stored as bcrypt
     if (pass === password) {
       console.log('User is found!');
+      res.locals.username = username;
       return next();
     // if pass is not found, then we know its stored as bcrypt
     } else {
       const result = await bcrypt.compare(password, pass);
         if (!result || !passDB) {
           return next(err);
+
         } else {
           console.log('User is found!');
+          res.locals.username = username;
           return next();
         }
     }
