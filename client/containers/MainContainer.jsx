@@ -12,6 +12,7 @@ import BudgetCard from "../components/BudgetCard.jsx";
 import BalanceCard from "../components/BalanceCard.jsx";
 import TrendChartCard from "../components/TrendChartCard.jsx";
 import TransactionsCard from "../components/TransactionsCard.jsx";
+import { Box } from "@mui/material";
 
 class MainContainer extends Component {
   constructor(props) {
@@ -46,10 +47,8 @@ class MainContainer extends Component {
       <>
         <div className="grid-container">
           <Header />
+
           <div className="stats-container">
-            <div className="stats-header">
-              <OverviewHeaderCard />
-            </div>
             <div className="stats-overview">
               <MonthlyIncomeCard monthlyIncome={this.state.monthlyIncome} />
               <MonthlyExpenseCard savings={this.state.sumArray} />
@@ -67,6 +66,7 @@ class MainContainer extends Component {
               <TransactionsCard transactions={this.state.transactions} />
             </div>
           </div>
+
           <div className="footer">
             <Footer />
           </div>
