@@ -6,6 +6,7 @@ const loginController = {};
 // Verifies if user login info is correct
 loginController.verifyUser = async (req, res, next) => {
   // decronstruct body
+
   const { username, password } = JSON.parse(req.body);
   try {
     const userValue = [username];
@@ -40,5 +41,10 @@ loginController.verifyUser = async (req, res, next) => {
     });
   }
 };
+
+loginController.authVerify = (req, res, next) => {
+  res.locals.user_id = req.user;
+  return next();
+}
 
 module.exports = loginController;
