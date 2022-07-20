@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { InfoContext } from "../containers/MainContainer.jsx";
 import { Paper, Typogrpahy, Avatar, Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
+import moment from "moment";
 
 export function TransactionsCard() {
   const [userInfo, setUserInfo] = useContext(InfoContext);
@@ -59,7 +60,9 @@ export function TransactionsCard() {
                 justifyContent: "flex-end",
               }}
             >
-              <Typography>{trans.dates.split("T")[0]}</Typography>
+              <Typography>
+                {moment(trans.dates).format("MMMM DD, YYYY")}
+              </Typography>
             </Box>
           </Box>
         </motion.div>
