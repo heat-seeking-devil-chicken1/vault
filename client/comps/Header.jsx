@@ -34,7 +34,7 @@ const Header = (props) => {
       accounts: [],
       transactions: result.transactionArray,
       categories: result.categories,
-      categorySum: result.allSum,
+      allSum: result.allSum,
       incomeArray: result.incomeArray,
       totalIncome: result.totalIncome,
     });
