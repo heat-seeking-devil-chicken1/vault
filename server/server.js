@@ -20,6 +20,7 @@ passport.use(new GoogleStrategy({
   callbackURL: "/auth/google/callback"
 },
 async function(accessToken, refreshToken, profile, cb) {
+  console.log(profile);
   // const avatar_link = faker.internet.avatar();
 
   // SQL query to find or create googleid
@@ -30,10 +31,10 @@ async function(accessToken, refreshToken, profile, cb) {
                       //   SELECT googleid\
                       //   FROM user_info WHERE googleid=$1)'
   
-  const value = [profile.id];
-  await db.query(find_query, value, (err, user) => {
-    return cb(err, user);
-  });
+  // const value = [profile.id];
+  // await db.query(find_query, value, (err, user) => {
+  //   return cb(err, user);
+  // });
   }
 ));
 
