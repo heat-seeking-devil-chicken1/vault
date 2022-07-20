@@ -24,6 +24,7 @@ const Header = (props) => {
         password: password,
       }),
     }).then((response) => response.text());
+    console.log(result)
   }
 
   return (

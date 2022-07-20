@@ -5,6 +5,7 @@ const dataController = require("../controllers/dataController");
 router.post(
   "/",
   loginController.verifyUser,
+  dataController.getTransactions,
   dataController.getCategories,
   dataController.getSum,
   (req, res) => {
