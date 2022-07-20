@@ -19,7 +19,7 @@ passport.use(new GoogleStrategy({
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: "/auth/google/callback"
 },
-async function(accessToken, refreshToken, profile, cb) {
+async function(accessToken, refreshToken, profile, next) {
   // usnermne
   const username = profile.displayName;
   //avatar_link
@@ -42,6 +42,7 @@ async function(accessToken, refreshToken, profile, cb) {
     const addResult = await db.query(addQuery, value);
     console.log('Google ID User created');
   }
+  return next();
 }));                  
 
 app.use(express.json());
