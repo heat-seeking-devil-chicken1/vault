@@ -11,7 +11,7 @@ import {
 
 const Header = (props) => {
   // boolean value to show modal login and modal register
-  const [loginAppear, setLoginAppear] = useState(true);
+  const [loginAppear, setLoginAppear] = useState(false);
   const [registerAppear, setRegisterAppear] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
