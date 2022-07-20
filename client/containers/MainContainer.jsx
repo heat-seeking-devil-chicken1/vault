@@ -2,19 +2,12 @@ import React, { useState, useEffect, Component } from "react";
 import "../stylesheets/styles.scss";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
-import OverviewHeaderCard from "../components/OverviewHeaderCard.jsx";
-import MonthlyIncomeCard from "../components/MonthlyIncomeCard.jsx";
-import MonthlyExpenseCard from "../components/MonthlyExpenseCard.jsx";
-import CashFlowCard from "../components/CashFlowCard.jsx";
-import ForecastCard from "../components/ForecastCard.jsx";
-import AssetsCard from "../components/AssetsCard.jsx";
-import BudgetCard from "../components/BudgetCard.jsx";
-import BalanceCard from "../components/BalanceCard.jsx";
-import TrendChartCard from "../components/TrendChartCard.jsx";
-import TransactionsCard from "../components/TransactionsCard.jsx";
 import { CategorySpendingCard } from "../comps/CategorySpendingCard.jsx";
 import { MonthlySpendingCard } from "../comps/MonthlySpendingCard.jsx";
-
+import { WelcomeUser } from "../comps/WelcomeUser.jsx";
+import { TransactionsCard } from "../comps/TransasctionsCard.jsx";
+import { CashflowCard } from "../comps/CashflowCard.jsx";
+import { AnnualForecastCard } from "../comps/AnnualForecastCard.jsx";
 class MainContainer extends Component {
   constructor(props) {
     super(props);
@@ -69,16 +62,24 @@ class MainContainer extends Component {
           </div> */}
 
           <div id="container">
-            <div class="Cash-Flow"></div>
-            <div class="Annual-Forecast"></div>
+            <div class="Cash-Flow">
+              <CashflowCard></CashflowCard>
+            </div>
+            <div class="Annual-Forecast">
+              <AnnualForecastCard></AnnualForecastCard>
+            </div>
             <div class="Monthly-Spendings">
               <MonthlySpendingCard></MonthlySpendingCard>
             </div>
             <div class="Category-Spendings">
               <CategorySpendingCard></CategorySpendingCard>
             </div>
-            <div class="Transactions"></div>
-            <div class="User-Area"></div>
+            <div class="Transactions">
+              <TransactionsCard></TransactionsCard>
+            </div>
+            <div class="User-Area">
+              <WelcomeUser></WelcomeUser>
+            </div>
           </div>
 
           <div className="footer">

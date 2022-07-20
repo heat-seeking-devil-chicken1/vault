@@ -29,7 +29,6 @@ export const options = {
     },
     title: {
       display: true,
-      text: "Chart.js Bar Chart",
     },
   },
 };
@@ -40,12 +39,12 @@ export const data = {
   labels,
   datasets: [
     {
-      label: "Dataset 1",
+      label: "Expenses",
       data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
       backgroundColor: "rgba(255, 99, 132, 0.5)",
     },
     {
-      label: "Dataset 2",
+      label: "Earnings",
       data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
       backgroundColor: "rgba(53, 162, 235, 0.5)",
     },
@@ -77,12 +76,13 @@ export function MonthlySpendingCard() {
         sx={{
           display: "flex",
           height: "100%",
+          width: "100%",
           flexDirection: "column",
           justifyContent: "center",
           alignitems: "center",
         }}
       >
-        <Bar options={options} height="500px" redraw={true} data={data} />
+        <Bar options={options} redraw={true} data={data} />
       </Box>
     </Paper>
   );

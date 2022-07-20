@@ -1,5 +1,5 @@
 import React from "react";
-import { Paper, Typography, Divider } from "@mui/material";
+import { Paper, Typography, Divider, Box } from "@mui/material";
 import { SpendingDoughnutChart } from "./SpendingDoughnutChart.jsx";
 
 export function CategorySpendingCard() {
@@ -23,7 +23,18 @@ export function CategorySpendingCard() {
       >
         SPENDING CATEGORIES
       </Typography>
-      <SpendingDoughnutChart redraw />
+      <Box
+        sx={{
+          display: "flex",
+          height: "100%",
+          width: "100%",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignitems: "center",
+        }}
+      >
+        <SpendingDoughnutChart redraw />
+      </Box>
     </Paper>
   );
 }
