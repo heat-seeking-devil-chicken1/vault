@@ -20,25 +20,49 @@ passport.use(new GoogleStrategy({
   callbackURL: "/auth/google/callback"
 },
 async function(accessToken, refreshToken, profile, cb) {
-  console.log(profile);
-  // const avatar_link = faker.internet.avatar();
-  const value = []
+  // usnermne
+  const username = profile.displayName;
+  //avatar_link
+  const avatar = profile.photos[0].value;
+  //password
+  const password = 'placeholder';
+  //googleid
+  const googleid = profile.id;
 
   // SQL query to find or create googleid
-  //const find_query = 'INSERT INTO user_info(username, avatar_link, password, googleid) \
-                      // SELECT googleid \
-                      // FROM user_info \
-                      // WHERE NOT EXISTS ( \
-                      //   SELECT googleid\
-                      //   FROM user_info WHERE googleid=$1)'
+  const addQuery = 'INSERT INTO user_info(username, avatar_link, password, googleid) VALUES ($1, $2, $3, $4)';
+  const value = [username, avatar, password, googleid];
+
+  // const find_query = "SELECT googleid FROM user_info"
+  // const findResult = await db.query(find_query)
+
+  // console.log('find result', findResult) 
+
+  // if (!findResult.oid) {
+  //   const addResult = await db.query(add_query);
+  //   console.log('add result', addResult)
+  // }
+  // console.log('Value: ', value);
+
+  const addResult = await db.query(addQuery, value);
+  console.log('add result', addResult)
   
-  // const value = [profile.id];
-  // await db.query(find_query, value, (err, user) => {
+  // INSERT INTO user_info(googleid) \
+  //                     SELECT googleid \
+  //                     FROM user_info \
+  //                     WHERE NOT EXISTS ( \
+  //                       SELECT username, avatar_link, password, googleid\
+  //                       WHERE username='TEST' AND avatar_link='TEST' AND password='TEST'AND googleid='TEST')
+  // catch (err) {
+
+  // }
+  // (err, user) => {
+  //   console.log('inside query error')
   //   return cb(err, user);
   // });
-  }
-));
-
+  // }
+// ));
+}));                  
 
 app.use(express.json());
 app.use(express.text());
@@ -53,11 +77,13 @@ app.use("/signup", signupRouter);
 app.use("/login", loginRouter,
 (req, res) => res.redirect('/transactions'));
 
+// oauth signup
+app.use('/auth', oauthRouter,
+(req, res) => res.redirect('/transactions'));
+
 // router for transactions
 app.use("/transactions", transactionRouter);
 
-// oauth signup
-app.use('/auth', oauthRouter);
 
 // catch all route handler
 app.use("*", (req, res) =>

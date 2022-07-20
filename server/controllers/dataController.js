@@ -1,4 +1,5 @@
 const db = require("../models/database.js");
+
 const dataController = {};
 
 // total transactions / categories / of each user
