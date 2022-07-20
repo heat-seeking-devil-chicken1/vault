@@ -15,26 +15,12 @@ loginController.verifyUser = async (req, res, next) => {
     const pass = passDB.rows[0].password;
     // conditional to check if password is stored as bcrypt
     if (pass === password) {
-<<<<<<< HEAD
       console.log('User is found!');
       res.locals.username = username;
-=======
-      // res.locals.message = "true";
-      const sql_query = "SELECT * FROM user_info WHERE username=$1";
-      const values = [username];
-      const result = await db.query(sql_query, values);
-      const userInfo = result.rows[0];
-      res.locals.userInfo = {
-        username: userInfo.username,
-        id: userInfo.id,
-        avatar: userInfo.avatar_link,
-      };
->>>>>>> Dev
       return next();
       // if pass is not found, then we know its stored as bcrypt
     } else {
       const result = await bcrypt.compare(password, pass);
-<<<<<<< HEAD
         if (!result || !passDB) {
           return next(err);
 
@@ -43,24 +29,6 @@ loginController.verifyUser = async (req, res, next) => {
           res.locals.username = username;
           return next();
         }
-=======
-      if (!result || !passDB) {
-        res.locals.message = "false";
-        return next();
-      } else {
-        // res.locals.message = "true";
-        const sql_query = "SELECT * FROM user_info WHERE username=$1";
-        const values = [username];
-        const result = await db.query(sql_query, values);
-        const userInfo = result.rows[0];
-        res.locals.userInfo = {
-          username: userInfo.username,
-          id: userInfo.id,
-          avatar: userInfo.avatar_link,
-        };
-        return next();
-      }
->>>>>>> Dev
     }
   } catch (err) {
     return next({

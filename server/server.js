@@ -22,7 +22,7 @@ passport.use(new GoogleStrategy({
 async function(accessToken, refreshToken, profile, cb) {
   console.log(profile);
   // const avatar_link = faker.internet.avatar();
-  const value
+  const value = []
 
   // SQL query to find or create googleid
   //const find_query = 'INSERT INTO user_info(username, avatar_link, password, googleid) \
