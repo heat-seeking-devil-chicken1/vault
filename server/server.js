@@ -4,17 +4,22 @@ const app = express();
 const PORT = 3000;
 
 const transactionRouter = require("./routes/transactions.js");
+const loginRouter = require("./routes/loginRouter.js");
+const signupRouter = require("./routes/signupRouter.js")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.resolve(__dirname, "../client")));
 
-// app.use('/api', apiRouter);
+// router for transactions 
+// app.use("/transactions", transactionRouter);
 
-// //route handler for static files
-app.use("/transactions", transactionRouter);
-// app.use(express.static(path.resolve(__dirname, "../client")));
+// router for login
+// app.use("/login", loginRouter);
 
-//catch all route handler
+app.use("/signup", signupRouter);
+
+// catch all route handler
 app.use("*", (req, res) =>
   res.status(404).send("This is not the page you're looking for...")
 );
