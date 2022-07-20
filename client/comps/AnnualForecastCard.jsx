@@ -17,7 +17,13 @@ export function AnnualForecastCard() {
         borderRadius: "20px",
       }}
     >
-      <Typography>ANNUAL FORECAST</Typography>
+      <Typography
+        sx={{
+          fontWeight: 600,
+        }}
+      >
+        ANNUAL FORECAST
+      </Typography>
     </Paper>
   );
 }

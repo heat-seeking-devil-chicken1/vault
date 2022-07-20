@@ -41,26 +41,6 @@ class MainContainer extends Component {
       <>
         <div className="grid-container">
           <Header />
-
-          {/* <div className="stats-container">
-            <div className="stats-overview">
-              <MonthlyIncomeCard monthlyIncome={this.state.monthlyIncome} />
-              <MonthlyExpenseCard savings={this.state.sumArray} />
-              <CashFlowCard
-                savings={this.state.sumArray}
-                monthlyIncome={this.state.monthlyIncome}
-              />
-              <ForecastCard />
-            </div>
-            <div className="stats-accounts">
-              <AssetsCard />
-              <BudgetCard />
-              <BalanceCard balanceArray={this.state.balance} />
-              <TrendChartCard />
-              <TransactionsCard transactions={this.state.transactions} />
-            </div>
-          </div> */}
-
           <div id="container">
             <div class="Cash-Flow">
               <CashflowCard></CashflowCard>

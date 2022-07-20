@@ -17,7 +17,13 @@ export function TransactionsCard() {
         borderRadius: "20px",
       }}
     >
-      <Typography>TRANSACTIONS</Typography>
+      <Typography
+        sx={{
+          fontWeight: 600,
+        }}
+      >
+        TRANSACTIONS
+      </Typography>
     </Paper>
   );
 }
