@@ -3,7 +3,7 @@ const dataController = require("../controllers/dataController");
 
 router.get(
   "/all/:user_id",
-  dataController.getTransactions,
+  dataController.getCategories,
   dataController.getSum,
   (req, res) => {
     console.log("landed on /categories");

@@ -8,8 +8,9 @@ const loginRouter = require("./routes/loginRouter.js");
 const signupRouter = require("./routes/signupRouter.js");
 
 app.use(express.json());
+app.use(express.text());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.resolve(__dirname, "../client")));
+// app.use(express.static(path.resolve(__dirname, "../client")));
 
 // router for transactions
 app.use("/transactions", transactionRouter);
