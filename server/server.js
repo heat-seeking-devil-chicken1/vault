@@ -4,20 +4,20 @@ const app = express();
 const PORT = 3000;
 
 const transactionRouter = require("./routes/transactions.js");
-const loginRouter = require("./routes/loginRouter.js");
-const signupRouter = require("./routes/signupRouter.js")
+// const loginRouter = require("./routes/loginRouter.js");
+// const signupRouter = require("./routes/signupRouter.js");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, "../client")));
 
-// router for transactions 
+// router for transactions
 // app.use("/transactions", transactionRouter);
 
 // router for login
 // app.use("/login", loginRouter);
 
-app.use("/signup", signupRouter);
+// app.use("/signup", signupRouter);
 
 // catch all route handler
 app.use("*", (req, res) =>
