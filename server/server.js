@@ -2,14 +2,45 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const PORT = 3000;
+const passport = require('passport');
+const db = require("./models/database");
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
-const transactionRouter = require("./routes/transactions.js");
-const loginRouter = require("./routes/loginRouter.js");
-const signupRouter = require("./routes/signupRouter.js");
+const transactionRouter = require("./routes/transactions");
+const loginRouter = require("./routes/loginRouter");
+const signupRouter = require("./routes/signupRouter");
+const oauthRouter = require("./routes/oauthRouter");
+const { clientID, clientSecret } = require('../keys.js');
+
+passport.use(new GoogleStrategy({
+  clientID: clientID,
+  clientSecret: clientSecret,
+  // clientID: GOOGLE_CLIENT_ID,
+  // clientSecret: GOOGLE_CLIENT_SECRET,
+  callbackURL: "/auth/google/callback"
+},
+async function(accessToken, refreshToken, profile, cb) {
+  const avatar_link = faker.internet.avatar();
+
+  // SQL query to find or create googleid
+  const find_query = 'INSERT INTO user_info(username, avatar_link, password, googleid) \
+                      SELECT googleid \
+                      FROM user_info \
+                      WHERE NOT EXISTS ( \
+                        SELECT googleid\
+                        FROM user_info WHERE googleid=$1)'
+  console.log(profile);
+  const value = [profile.id];
+  await db.query(find_query, value, (err, user) => {
+    return cb(err, user);
+  });
+  }
+));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, "../client")));
+
 
 // router for signup
 app.use("/signup", signupRouter);
@@ -21,8 +52,8 @@ app.use("/login", loginRouter,
 // router for transactions
 app.use("/transactions", transactionRouter);
 
-// oaauth signup
-// app.use()
+// oauth signup
+app.use('/auth', oauthRouter);
 
 // catch all route handler
 app.use("*", (req, res) =>
