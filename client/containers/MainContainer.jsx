@@ -12,7 +12,8 @@ import BudgetCard from "../components/BudgetCard.jsx";
 import BalanceCard from "../components/BalanceCard.jsx";
 import TrendChartCard from "../components/TrendChartCard.jsx";
 import TransactionsCard from "../components/TransactionsCard.jsx";
-import { Box } from "@mui/material";
+import { CategorySpendingCard } from "../comps/CategorySpendingCard.jsx";
+import { MonthlySpendingCard } from "../comps/MonthlySpendingCard.jsx";
 
 class MainContainer extends Component {
   constructor(props) {
@@ -48,7 +49,7 @@ class MainContainer extends Component {
         <div className="grid-container">
           <Header />
 
-          <div className="stats-container">
+          {/* <div className="stats-container">
             <div className="stats-overview">
               <MonthlyIncomeCard monthlyIncome={this.state.monthlyIncome} />
               <MonthlyExpenseCard savings={this.state.sumArray} />
@@ -65,6 +66,19 @@ class MainContainer extends Component {
               <TrendChartCard />
               <TransactionsCard transactions={this.state.transactions} />
             </div>
+          </div> */}
+
+          <div id="container">
+            <div class="Cash-Flow"></div>
+            <div class="Annual-Forecast"></div>
+            <div class="Monthly-Spendings">
+              <MonthlySpendingCard></MonthlySpendingCard>
+            </div>
+            <div class="Category-Spendings">
+              <CategorySpendingCard></CategorySpendingCard>
+            </div>
+            <div class="Transactions"></div>
+            <div class="User-Area"></div>
           </div>
 
           <div className="footer">

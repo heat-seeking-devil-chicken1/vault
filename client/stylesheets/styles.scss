@@ -55,6 +55,47 @@ body {
   margin-right: 20px;
 }
 
+#container {
+  grid-area: stats;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  height: 100%;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "User-Area User-Area Cash-Flow Cash-Flow Annual-Forecast Annual-Forecast"
+    "User-Area User-Area Cash-Flow Cash-Flow Annual-Forecast Annual-Forecast"
+    "Monthly-Spendings Monthly-Spendings Category-Spendings Category-Spendings Transactions Transactions"
+    "Monthly-Spendings Monthly-Spendings Category-Spendings Category-Spendings Transactions Transactions";
+}
+
+.Cash-Flow {
+  grid-area: Cash-Flow;
+}
+
+.Annual-Forecast {
+  grid-area: Annual-Forecast;
+}
+
+.Monthly-Spendings {
+  grid-area: Monthly-Spendings;
+  padding: 30px;
+}
+
+.Category-Spendings {
+  grid-area: Category-Spendings;
+  padding: 30px;
+}
+
+.Transactions {
+  grid-area: Transactions;
+}
+
+.User-Area {
+  grid-area: User-Area;
+}
+
 /* STATS */
 
 .stats-container {
@@ -62,10 +103,6 @@ body {
   width: 100%;
   grid-area: stats;
   background-color: $lightGrey;
-  display: "flex";
-  flex-direction: "row";
-  justify-content: "center";
-  align-items: "center";
 }
 
 /* STATS: HEADER */
