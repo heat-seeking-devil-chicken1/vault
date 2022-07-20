@@ -22,6 +22,7 @@ passport.use(new GoogleStrategy({
 async function(accessToken, refreshToken, profile, cb) {
   console.log(profile);
   // const avatar_link = faker.internet.avatar();
+  const value
 
   // SQL query to find or create googleid
   //const find_query = 'INSERT INTO user_info(username, avatar_link, password, googleid) \
@@ -40,8 +41,9 @@ async function(accessToken, refreshToken, profile, cb) {
 
 
 app.use(express.json());
+app.use(express.text());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.resolve(__dirname, "../client")));
+// app.use(express.static(path.resolve(__dirname, "../client")));
 
 
 // router for signup

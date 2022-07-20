@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import logo from "../assets/v_logo.png";
 import {
   AppBar,
@@ -8,6 +8,7 @@ import {
   Typography,
   TextField,
 } from "@mui/material";
+import { InfoContext } from "../containers/MainContainer.jsx";
 
 const Header = (props) => {
   // boolean value to show modal login and modal register
@@ -15,9 +16,24 @@ const Header = (props) => {
   const [registerAppear, setRegisterAppear] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [userInfo, setUserInfo] = useContext(InfoContext);
 
-  function submitInformation() {
-    console.log(username, password);
+  async function submitInformation() {
+    const result = await fetch("/login", {
+      method: "POST",
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    }).then((response) => response.text());
+    console.log(result);
+    // if (result === "true") {
+    //   setUserInfo({
+    //     loggedIn: true,
+    //     user_name: username,
+    //   });
+    // }
+    // setLoginAppear(false);
   }
 
   return (
@@ -154,7 +170,7 @@ const Header = (props) => {
                 padding: "10px",
               }}
               onClick={() => {
-                console.log(username, password);
+                submitInformation();
               }}
             >
               Login

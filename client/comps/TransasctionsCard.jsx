@@ -2,6 +2,7 @@ import React from "react";
 import { Paper, Typogrpahy, Avatar, Box, Typography } from "@mui/material";
 
 export function TransactionsCard() {
+  
   return (
     <Paper
       elevation={12}
