@@ -15,9 +15,26 @@ dataController.getCategories = async (req, res, next) => {
     return next();
   } catch (err) {
     return next({
-      log: `Express error handler caught in getTransactions middleware ${err}`,
+      log: `Express error handler caught in getCategories middleware ${err}`,
       status: 400,
       message: { err: "An error occurred while getting user categories" },
+    });
+  }
+};
+
+dataController.getTransactions = async (req, res, next) => {
+  try {
+    const user_id = res.locals.userInfo.id;
+    const sql_query = "select * from spending where user_id = $1";
+    const values = [user_id];
+    const result = await db.query(sql_query, values);
+    res.locals.userInfo.transactions = result.rows;
+    return next();
+  } catch (err) {
+    return next({
+      log: `Express error handler caught in getTransactions middleware ${err}`,
+      status: 400,
+      message: { err: "An error occurred while getting user transactions array" },
     });
   }
 };
@@ -32,7 +49,7 @@ dataController.getSum = async (req, res, next) => {
     return next();
   } catch (err) {
     return next({
-      log: `Express error handler caught in getTransactions middleware ${err}`,
+      log: `Express error handler caught in getSum middleware ${err}`,
       status: 400,
       message: { err: "An error occurred while getting user transactions sum" },
     });

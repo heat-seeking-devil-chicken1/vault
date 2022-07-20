@@ -8,7 +8,6 @@ import {
   Typography,
   TextField,
 } from "@mui/material";
-import { InfoContext } from "../containers/MainContainer.jsx";
 
 const Header = (props) => {
   // boolean value to show modal login and modal register
@@ -16,7 +15,6 @@ const Header = (props) => {
   const [registerAppear, setRegisterAppear] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [userInfo, setUserInfo] = useContext(InfoContext);
 
   async function submitInformation() {
     const result = await fetch("/login", {
@@ -26,14 +24,7 @@ const Header = (props) => {
         password: password,
       }),
     }).then((response) => response.text());
-    console.log(result);
-    // if (result === "true") {
-    //   setUserInfo({
-    //     loggedIn: true,
-    //     user_name: username,
-    //   });
-    // }
-    // setLoginAppear(false);
+    console.log(result)
   }
 
   return (
