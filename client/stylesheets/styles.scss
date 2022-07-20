@@ -1,8 +1,8 @@
-$white: #fffff;
+$white: #ffffff;
 $lightGrey: #f6f6f6;
 $mediumGrey: #ececec;
 $darkGrey: #d0d0d0;
-$logoPurple: #7068F4;
+$logoPurple: #7068f4;
 $logoPink: #ff64b4;
 $logoYellow: #ffd94a;
 
@@ -14,7 +14,7 @@ body {
   margin: 0;
   padding: 0;
   color: $lightGrey;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   box-sizing: border-box;
 }
 
@@ -58,8 +58,14 @@ body {
 /* STATS */
 
 .stats-container {
+  height: 100%;
+  width: 100%;
   grid-area: stats;
   background-color: $lightGrey;
+  display: "flex";
+  flex-direction: "row";
+  justify-content: "center";
+  align-items: "center";
 }
 
 /* STATS: HEADER */
