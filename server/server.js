@@ -30,38 +30,18 @@ async function(accessToken, refreshToken, profile, cb) {
   const googleid = profile.id;
 
   // SQL query to find or create googleid
+  const find_query = "SELECT googleid FROM user_info WHERE googleid=$1"
+  const valueFind = [googleid];
+
   const addQuery = 'INSERT INTO user_info(username, avatar_link, password, googleid) VALUES ($1, $2, $3, $4)';
   const value = [username, avatar, password, googleid];
-
-  const find_query = "SELECT googleid FROM user_info"
-  const findResult = await db.query(find_query)
-
-  console.log('find result', findResult) 
-
-  // if (!findResult.oid) {
-  //   const addResult = await db.query(add_query, value);
-  //   console.log('add result', addResult)
-  // }
-  // console.log('Value: ', value);
-
-  // const addResult = await db.query(addQuery, value);
-  // console.log('add result', addResult)
   
-  // INSERT INTO user_info(googleid) \
-  //                     SELECT googleid \
-  //                     FROM user_info \
-  //                     WHERE NOT EXISTS ( \
-  //                       SELECT username, avatar_link, password, googleid\
-  //                       WHERE username='TEST' AND avatar_link='TEST' AND password='TEST'AND googleid='TEST')
-  // catch (err) {
-
-  // }
-  // (err, user) => {
-  //   console.log('inside query error')
-  //   return cb(err, user);
-  // });
-  // }
-// ));
+  const findResult = await db.query(find_query, valueFind)
+  // if google id doesn't exist, create it
+  if (!findResult.rows[0]) {
+    const addResult = await db.query(addQuery, value);
+    console.log('Google ID User created');
+  }
 }));                  
 
 app.use(express.json());
@@ -83,7 +63,6 @@ app.use('/auth', oauthRouter,
 
 // router for transactions
 app.use("/transactions", transactionRouter);
-
 
 // catch all route handler
 app.use("*", (req, res) =>
