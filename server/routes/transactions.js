@@ -2,7 +2,7 @@ const router = require("express").Router();
 const dataController = require("../controllers/dataController");
 
 router.get(
-  "/all/:user_id",
+  "/:user_id",
   dataController.getCategories,
   dataController.getSum,
   (req, res) => {

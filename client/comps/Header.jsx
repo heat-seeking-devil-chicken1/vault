@@ -36,6 +36,7 @@ const Header = (props) => {
       categories: result.categories,
       categorySum: result.allSum,
       incomeArray: result.incomeArray,
+      totalIncome: result.totalIncome,
     });
     setLoginAppear(false);
   }

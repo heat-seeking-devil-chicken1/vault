@@ -1,4 +1,5 @@
 const db = require("../models/database.js");
+
 const dataController = {};
 
 // total transactions / categories / of each user
@@ -14,7 +15,7 @@ dataController.getCategories = async (req, res, next) => {
     return next();
   } catch (err) {
     return next({
-      log: `Express error handler caught in getTransactions middleware ${err}`,
+      log: `Express error handler caught in getCategories middleware ${err}`,
       status: 400,
       message: { err: "An error occurred while getting user categories" },
     });
@@ -49,7 +50,7 @@ dataController.getSum = async (req, res, next) => {
     return next();
   } catch (err) {
     return next({
-      log: `Express error handler caught in getTransactions middleware ${err}`,
+      log: `Express error handler caught in getSum middleware ${err}`,
       status: 400,
       message: { err: "An error occurred while getting user transactions sum" },
     });
@@ -63,6 +64,23 @@ dataController.getIncome = async (req, res, next) => {
     const values = [user_id];
     const result = await db.query(sql_query, values);
     res.locals.userInfo.incomeArray = result.rows;
+    return next();
+  } catch (err) {
+    return next({
+      log: `Express error handler caught in getTransactions middleware ${err}`,
+      status: 400,
+      message: { err: "An error occurred while getting user transactions sum" },
+    });
+  }
+};
+
+dataController.getTotalIncome = async (req, res, next) => {
+  try {
+    const user_id = res.locals.userInfo.id;
+    const sql_query = "select sum(amount) from income where user_id = $1";
+    const values = [user_id];
+    const result = await db.query(sql_query, values);
+    res.locals.userInfo.totalIncome = result.rows[0].sum;
     return next();
   } catch (err) {
     return next({

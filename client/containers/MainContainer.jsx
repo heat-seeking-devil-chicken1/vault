@@ -21,6 +21,7 @@ export function MainContainer() {
     categorySum: 0,
     allSum: 0,
     incomeArray: [],
+    totalIncome: 0,
     // to change later - placeholder data for design
     // loggedIn: true,
     // avatar:
