@@ -29,12 +29,8 @@ export function TransactionsCard() {
         >
           <Box
             sx={{
-              width: "100%",
-              height: "max-content",
-              display: "flex",
-              flexDirection: "row",
-              width: "100%",
-              overflowY: "auto",
+              overflowY: "scroll",
+              width: "100%"
             }}
           >
             <Box
