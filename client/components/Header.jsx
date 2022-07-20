@@ -53,31 +53,6 @@ const Header = (props) => {
   };
 
   return (
-    // <header className="header">
-    //   {" "}
-    //   <div className="header-login">
-    //     <span className="login-text">Vault Login</span>
-    //     <form onSubmit={submitHandler}>
-    //       <input
-    //         type="text"
-    //         name="username"
-    //         value={username}
-    //         placeholder="username"
-    //         onChange={changeHandler}
-    //       />
-    //       <br />
-    //       <input
-    //         type="password"
-    //         name="password"
-    //         value={password}
-    //         placeholder="password"
-    //         onChange={changeHandler}
-    //       />
-    //       <br />
-    //       <input type="submit" name="submit" value="Add Account to Dashboard" />
-    //     </form>
-    //   </div>
-    // </header>
     <AppBar
       sx={{
         height: "5%",
@@ -131,43 +106,152 @@ const Header = (props) => {
             height: "80%",
             backgroundColor: "secondary.main",
           }}
+          onClick={() => {
+            setRegisterAppear(true);
+          }}
         >
           REGISTER
         </Button>
       </Box>
       {loginAppear && (
-        <Modal
+        <Modal sx={{
+          display: "flex",
+          justifyContent: "center",
+          margin: "50px"
+        }}
           open={open}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
-          onClick={() => {
-            setLoginAppear(false);
-          }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              backgroundColor: "white",
-            }}
-          >
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Text in a modal
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+                alignItems: "center",
+                height: "70%",
+                width: "70%",
+                backgroundColor: "white",
+                padding: "50px",
+                borderRadius: "10px",
+              }}
+            >
+              <Box>
+                <img src={logo} width="100px" height="100px"></img>
+              </Box>
+              <Typography sx={{ color: "#2d2d2d", padding: "30px" }}
+                id="welcome-text" variant="h6" component="h2">
+                Welcome back
+              </Typography>
+              <TextField id="username" placeholder="username" 
+               sx={{ 
+                backgroundColor: "#7068f4", 
+                borderRadius: "3px",  
+                '&:hover': {
+                  backgroundColor: '#ececec'} 
+               }}>
+              </TextField>
+              <br></br>
+              <TextField id="password" placeholder="password" 
+                sx={{ 
+                  backgroundColor: "#7068f4", 
+                  borderRadius: "3px",  
+                  '&:hover': {
+                    backgroundColor: '#ececec'} 
+                  }}>
+              </TextField>
+              <br></br>
+              <Button sx={{
+                backgroundColor: "#ffd94a",
+                borderRadius: "3px",
+                padding:"10px"
+              }}
+                onClick={() => {
+                  setLoginAppear(false);
+            }}>Login</Button>
+          </Box>
+        </Modal>
+      )}
+
+      {registerAppear && (
+        <Modal sx={{
+          display: "flex",
+          justifyContent: "center",
+          margin: "50px"
+        }}
+          open={open}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+                alignItems: "center",
+                height: "90%",
+                width: "70%",
+                backgroundColor: "white",
+                padding: "50px",
+                borderRadius: "7px",
+              }}
+            >
+              <Box>
+                <img src={logo} width="100px" height="100px"></img>
+              </Box>
+              <Typography sx={{ color: "#2d2d2d", padding: "30px" }}
+                id="welcome-text" variant="h6" component="h2">
+                Create new account
+              </Typography>
+              <TextField id="full-name" placeholder="Full name" 
+               sx={{ 
+                backgroundColor: "#7068f4", 
+                borderRadius: "3px",
+                '&:hover': {
+                  backgroundColor: '#ececec'} 
+               }}>
+              </TextField>
+              <br></br>
+              <TextField id="username" placeholder="username" 
+               sx={{ 
+                backgroundColor: "#7068f4", 
+                borderRadius: "3px",
+                '&:hover': {
+                  backgroundColor: '#ececec'} 
+               }}>
+              </TextField>
+              <br></br>
+              <TextField id="password" placeholder="password" 
+                sx={{ 
+                  backgroundColor: "#7068f4",
+                  borderRadius: "3px",  
+                  '&:hover': {
+                    backgroundColor: '#ececec'} 
+                  }}>
+              </TextField>
+              <br></br>
+              <Button sx={{
+                backgroundColor: "#ffd94a",
+                borderRadius: "3px",
+                padding:"10px"
+              }}
+                onClick={() => {
+                  setRegisterAppear(false);
+            }}>Register</Button>
+            <br></br>
+            <Button sx={{
+                backgroundColor: "#ffd94a",
+                borderRadius: "3px",
+                padding:"10px"
+              }}
+                onClick={() => {
+                  setRegisterAppear(false);
+            }}>Google</Button>
           </Box>
         </Modal>
       )}
     </AppBar>
   );
 };
-
-// return (
-//   <header class="header">
-//     <div class="header-search">Welcome Logged In User</div>
-//   </header>
-// )
-// };
 
 export default Header;
