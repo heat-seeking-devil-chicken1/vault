@@ -14,6 +14,40 @@ const loginRouter = require("./routes/loginRouter");
 const signupRouter = require("./routes/signupRouter");
 const oauthRouter = require("./routes/oauthRouter");
 
+<<<<<<< HEAD
+=======
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: "/auth/google/callback"
+},
+async function(accessToken, refreshToken, profile, next) {
+  // usnermne
+  const username = profile.displayName;
+  //avatar_link
+  const avatar = profile.photos[0].value;
+  //password
+  const password = 'placeholder';
+  //googleid
+  const googleid = profile.id;
+
+  // SQL query to find or create googleid
+  const find_query = "SELECT googleid FROM user_info WHERE googleid=$1"
+  const valueFind = [googleid];
+
+  const addQuery = 'INSERT INTO user_info(username, avatar_link, password, googleid) VALUES ($1, $2, $3, $4)';
+  const value = [username, avatar, password, googleid];
+  
+  const findResult = await db.query(find_query, valueFind)
+  // if google id doesn't exist, create it
+  if (!findResult.rows[0]) {
+    const addResult = await db.query(addQuery, value);
+    console.log('Google ID User created');
+  }
+  return next();
+}));                  
+
+>>>>>>> Dev
 app.use(express.json());
 app.use(express.text());
 app.use(express.urlencoded({ extended: true }));
