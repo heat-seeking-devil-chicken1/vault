@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { useState, useEffect, useContext, createContext } from "react";
 import "../stylesheets/styles.scss";
 import Header from "../comps/Header.jsx";
 import Footer from "../components/Footer.jsx";
@@ -8,67 +8,67 @@ import { WelcomeUser } from "../comps/WelcomeUser.jsx";
 import { TransactionsCard } from "../comps/TransasctionsCard.jsx";
 import { CashflowCard } from "../comps/CashflowCard.jsx";
 import { AnnualForecastCard } from "../comps/AnnualForecastCard.jsx";
-class MainContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loggedInUser: 1,
-      transactions: [],
-      categories: [],
-      balance: [],
-      sumArray: [],
-      monthlyIncome: 5000,
-      // synced: false,
-    };
-    // this.updateSynced = this.updateSynced.bind(this);
+export const InfoContext = createContext();
+
+export function MainContainer() {
+  const [userInfo, setUserInfo] = useState({
+    loggedIn: false,
+    avatar: "",
+    user_name: "",
+    accounts: [], // { accountName: "", accountBalance: 0, accountType: "" }
+    transactions: [], // { transactionName: "", transactionAmount: 0, transactionDate: "" }
+    categories: [], // { categoryName: ''}
+    categorySum: 0,
+    allSum: 0,
+  });
+
+  useEffect(() => {
+    console.log("initial state ", userInfo.loggedIn);
+    if (userInfo.loggedIn) {
+      fetchInformation();
+    }
+  }, [userInfo]);
+
+  async function fetchInformation() {
+    try {
+      console.log("trueee!!!!");
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  componentDidMount() {
-    // make call to our endpoint and populate
-    fetch("/transactions/all/" + this.state.loggedInUser)
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({
-          ...this.state,
-          categories: data.categories,
-          sum: data.sum,
-        });
-      });
-  }
-
-  render() {
-    return (
-      <>
-        <div className="grid-container">
+  return (
+    <>
+      <div className="grid-container">
+        <InfoContext.Provider value={[userInfo, setUserInfo]}>
           <Header />
           <div id="container">
-            <div class="Cash-Flow">
+            <div className="Cash-Flow">
               <CashflowCard></CashflowCard>
             </div>
-            <div class="Annual-Forecast">
+            <div className="Annual-Forecast">
               <AnnualForecastCard></AnnualForecastCard>
             </div>
-            <div class="Monthly-Spendings">
+            <div className="Monthly-Spendings">
               <MonthlySpendingCard></MonthlySpendingCard>
             </div>
-            <div class="Category-Spendings">
+            <div className="Category-Spendings">
               <CategorySpendingCard></CategorySpendingCard>
             </div>
-            <div class="Transactions">
+            <div className="Transactions">
               <TransactionsCard></TransactionsCard>
             </div>
-            <div class="User-Area">
+            <div className="User-Area">
               <WelcomeUser></WelcomeUser>
             </div>
           </div>
-
-          <div className="footer">
-            <Footer />
-          </div>
+        </InfoContext.Provider>
+        <div className="footer">
+          <Footer />
         </div>
-      </>
-    );
-  }
+      </div>
+    </>
+  );
 }
 
 export default MainContainer;

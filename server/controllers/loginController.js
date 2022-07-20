@@ -6,26 +6,45 @@ const loginController = {};
 // Verifies if user login info is correct
 loginController.verifyUser = async (req, res, next) => {
   // decronstruct body
-  const { username, password } = req.body;
-  
+  const { username, password } = JSON.parse(req.body);
+  console.log(username, password);
   try {
     const userValue = [username];
     const passQuery = "SELECT password FROM user_info WHERE username=$1";
     const passDB = await db.query(passQuery, userValue);
-    const pass = passDB.rows[0].password
+    const pass = passDB.rows[0].password;
     // conditional to check if password is stored as bcrypt
     if (pass === password) {
-      console.log('User is found!');
+      // res.locals.message = "true";
+      const sql_query = "SELECT * FROM user_info WHERE username=$1";
+      const values = [username];
+      const result = await db.query(sql_query, values);
+      const userInfo = result.rows[0];
+      res.locals.userInfo = {
+        username: userInfo.username,
+        id: userInfo.id,
+        avatar: userInfo.avatar_link,
+      };
       return next();
-    // if pass is not found, then we know its stored as bcrypt
+      // if pass is not found, then we know its stored as bcrypt
     } else {
       const result = await bcrypt.compare(password, pass);
-        if (!result || !passDB) {
-          return next(err);
-        } else {
-          console.log('User is found!');
-          return next();
-        }
+      if (!result || !passDB) {
+        res.locals.message = "false";
+        return next();
+      } else {
+        // res.locals.message = "true";
+        const sql_query = "SELECT * FROM user_info WHERE username=$1";
+        const values = [username];
+        const result = await db.query(sql_query, values);
+        const userInfo = result.rows[0];
+        res.locals.userInfo = {
+          username: userInfo.username,
+          id: userInfo.id,
+          avatar: userInfo.avatar_link,
+        };
+        return next();
+      }
     }
   } catch (err) {
     return next({
