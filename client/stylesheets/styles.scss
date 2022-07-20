@@ -1,8 +1,20 @@
+$white: #fffff;
+$lightGrey: #f6f6f6;
+$mediumGrey: #ececec;
+$darkGrey: #d0d0d0;
+$logoPurple: #7068F4;
+$logoPink: #ff64b4;
+$logoYellow: #ffd94a;
+
+// $quicksand: 'Quicksand'
+
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
 body {
   margin: 0;
   padding: 0;
-  color: #fff;
-  font-family: 'Open Sans', Helvetica, sans-serif;
+  color: $lightGrey;
+  font-family: 'Quicksand', sans-serif;
   box-sizing: border-box;
 }
 
@@ -13,9 +25,9 @@ body {
   grid-template-columns: 1fr;
   grid-template-rows: 50px 1fr 50px;
   grid-template-areas:
-    'header'
-    'stats'
-    'footer';
+    "header"
+    "stats"
+    "footer";
   height: 100vh;
 }
 
@@ -27,7 +39,7 @@ body {
   align-items: center;
   justify-content: right;
   padding: 0 20px;
-  background-color: #354f52;
+  background-color: $darkGrey;
 }
 
 .header-login {
@@ -47,7 +59,7 @@ body {
 
 .stats-container {
   grid-area: stats;
-  background-color: #cad2c5;
+  background-color: $lightGrey;
 }
 
 /* STATS: HEADER */
@@ -82,9 +94,8 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  background-color: #95a99a;
+  background-color: $darkGrey;
   min-height: 100%;
-  background: linear-gradient(0deg, rgb(20 20 20 / 30%), rgb(0 0 0 / 33%)), url(https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9yZXN0JTIwYmFja2dyb3VuZHxlbnwwfHwwfHw%3D&w=1000&q=80);
   background-size: cover;
   background-position: bottom;
 }
@@ -107,7 +118,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: #f3f2f2;
+  background-color: $darkGrey;
   -webkit-column-break-inside: avoid;
   padding: 24px;
   box-sizing: border-box;
@@ -146,7 +157,6 @@ body {
   grid-area: Trends;
 }
 
-
 /* Universal Card Styling */
 
 /* FOOTER */
@@ -157,7 +167,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
-  background-color: #354f52;
+  background-color: $darkGrey;
 }
 
 /* Lazy Styling */
