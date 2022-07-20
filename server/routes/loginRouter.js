@@ -7,6 +7,8 @@ router.post(
   loginController.verifyUser,
   dataController.getCategories,
   dataController.getSum,
+  dataController.getIncome,
+  dataController.getTransactions,
   (req, res) => {
     res.status(200).json(res.locals.userInfo);
   }

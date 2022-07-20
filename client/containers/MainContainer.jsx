@@ -12,49 +12,49 @@ export const InfoContext = createContext();
 
 export function MainContainer() {
   const [userInfo, setUserInfo] = useState({
-    // loggedIn: false,
-    // avatar: "",
-    // user_name: "",
-    // accounts: [], // { accountName: "", accountBalance: 0, accountType: "" }
-    // transactions: [], // { transactionName: "", transactionAmount: 0, transactionDate: "" }
-    // categories: [], // { categoryName: ''}
-    // categorySum: 0,
-    // allSum: 0,
-
+    loggedIn: false,
+    avatar: "",
+    user_name: "",
+    accounts: [], // { accountName: "", accountBalance: 0, accountType: "" }
+    transactions: [], // { transactionName: "", transactionAmount: 0, transactionDate: "" }
+    categories: [], // { categoryName: ''}
+    categorySum: 0,
+    allSum: 0,
+    incomeArray: [],
     // to change later - placeholder data for design
-    loggedIn: true,
-    avatar:
-      "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/39.jpg",
-    user_name: "Kevin49",
-    accounts: [],
-    transactions: [],
-    categories: [
-      {
-        cat_name: "Bills & Utilities",
-        sum: "$1,009.16",
-      },
-      {
-        cat_name: "Entertainment",
-        sum: "$1,098.79",
-      },
-      {
-        cat_name: "Shopping",
-        sum: "$2,756.69",
-      },
-      {
-        cat_name: "Health & Wellness",
-        sum: "$983.13",
-      },
-      {
-        cat_name: "Transportation",
-        sum: "$2,868.66",
-      },
-      {
-        cat_name: "Education",
-        sum: "$5,858.07",
-      },
-    ],
-    categorySum: "$14,574.50",
+    // loggedIn: true,
+    // avatar:
+    //   "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/39.jpg",
+    // user_name: "Kevin49",
+    // accounts: [],
+    // transactions: [],
+    // categories: [
+    //   {
+    //     cat_name: "Bills & Utilities",
+    //     sum: "$1,009.16",
+    //   },
+    //   {
+    //     cat_name: "Entertainment",
+    //     sum: "$1,098.79",
+    //   },
+    //   {
+    //     cat_name: "Shopping",
+    //     sum: "$2,756.69",
+    //   },
+    //   {
+    //     cat_name: "Health & Wellness",
+    //     sum: "$983.13",
+    //   },
+    //   {
+    //     cat_name: "Transportation",
+    //     sum: "$2,868.66",
+    //   },
+    //   {
+    //     cat_name: "Education",
+    //     sum: "$5,858.07",
+    //   },
+    // ],
+    // categorySum: "$14,574.50",
   });
 
   useEffect(() => {

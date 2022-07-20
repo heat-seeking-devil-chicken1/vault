@@ -32,9 +32,10 @@ const Header = (props) => {
       avatar: result.avatar,
       user_name: result.username,
       accounts: [],
-      transactions: [],
+      transactions: result.transactionArray,
       categories: result.categories,
       categorySum: result.allSum,
+      incomeArray: result.incomeArray,
     });
     setLoginAppear(false);
   }
