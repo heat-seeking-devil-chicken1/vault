@@ -6,36 +6,37 @@ const passport = require('passport');
 const db = require("./models/database");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
+// require .env file that stores google keys
+require('dotenv').config();
+
 const transactionRouter = require("./routes/transactions");
 const loginRouter = require("./routes/loginRouter");
 const signupRouter = require("./routes/signupRouter");
 const oauthRouter = require("./routes/oauthRouter");
-const { clientID, clientSecret } = require('../keys.js');
 
 passport.use(new GoogleStrategy({
-  clientID: clientID,
-  clientSecret: clientSecret,
-  // clientID: GOOGLE_CLIENT_ID,
-  // clientSecret: GOOGLE_CLIENT_SECRET,
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: "/auth/google/callback"
 },
 async function(accessToken, refreshToken, profile, cb) {
-  const avatar_link = faker.internet.avatar();
+  // const avatar_link = faker.internet.avatar();
 
   // SQL query to find or create googleid
-  const find_query = 'INSERT INTO user_info(username, avatar_link, password, googleid) \
-                      SELECT googleid \
-                      FROM user_info \
-                      WHERE NOT EXISTS ( \
-                        SELECT googleid\
-                        FROM user_info WHERE googleid=$1)'
-  console.log(profile);
+  //const find_query = 'INSERT INTO user_info(username, avatar_link, password, googleid) \
+                      // SELECT googleid \
+                      // FROM user_info \
+                      // WHERE NOT EXISTS ( \
+                      //   SELECT googleid\
+                      //   FROM user_info WHERE googleid=$1)'
+  
   const value = [profile.id];
   await db.query(find_query, value, (err, user) => {
     return cb(err, user);
   });
   }
 ));
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
