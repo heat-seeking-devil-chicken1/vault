@@ -15,9 +15,13 @@ app.use(express.static(path.resolve(__dirname, "../client")));
 // app.use("/transactions", transactionRouter);
 
 // router for login
-// app.use("/login", loginRouter);
+app.use("/login", loginRouter);
 
-app.use("/signup", signupRouter);
+// router for signup
+app.use("/signup", signupRouter,
+(req, res) => {
+  return res.status(200).redirect('/login')
+});
 
 // catch all route handler
 app.use("*", (req, res) =>
