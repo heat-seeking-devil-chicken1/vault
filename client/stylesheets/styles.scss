@@ -60,7 +60,6 @@ body {
   height: 162px;
   background-color: #e3e4e6;
   color: slategray;
-  background: url('https://wallpaperaccess.com/full/2438724.jpg');
   background-position: center;
 }
 
@@ -84,7 +83,6 @@ body {
   justify-content: space-between;
   padding: 20px;
   background-color: #95a99a;
-  // background: url(https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9yZXN0JTIwYmFja2dyb3VuZHxlbnwwfHwwfHw%3D&w=1000&q=80);
   min-height: 100%;
   background: linear-gradient(0deg, rgb(20 20 20 / 30%), rgb(0 0 0 / 33%)), url(https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9yZXN0JTIwYmFja2dyb3VuZHxlbnwwfHwwfHw%3D&w=1000&q=80);
   background-size: cover;
@@ -196,9 +194,9 @@ body {
   flex-direction: column;
 }
 
-.transactions-card.stats-accounts-card.stats-transactions.card {
-  background: url(https://wallpaperaccess.com/full/3970747.jpg);
-}
+// .transactions-card.stats-accounts-card.stats-transactions.card {
+//   background: url(https://wallpaperaccess.com/full/3970747.jpg);
+// }
 
 .stats-accounts-card,
 .stats-overview-card,
