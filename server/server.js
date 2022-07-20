@@ -33,16 +33,16 @@ async function(accessToken, refreshToken, profile, cb) {
   const addQuery = 'INSERT INTO user_info(username, avatar_link, password, googleid) VALUES ($1, $2, $3, $4)';
   const value = [username, avatar, password, googleid];
 
-  // const find_query = "SELECT googleid FROM user_info"
-  // const findResult = await db.query(find_query)
+  const find_query = "SELECT googleid FROM user_info"
+  const findResult = await db.query(find_query)
 
-  // console.log('find result', findResult) 
+  console.log('find result', findResult) 
 
-  // if (!findResult.oid) {
-  //   const addResult = await db.query(add_query);
-  //   console.log('add result', addResult)
-  // }
-  // console.log('Value: ', value);
+  if (!findResult.oid) {
+    const addResult = await db.query(add_query);
+    console.log('add result', addResult)
+  }
+  console.log('Value: ', value);
 
   const addResult = await db.query(addQuery, value);
   console.log('add result', addResult)
