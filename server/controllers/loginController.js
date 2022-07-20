@@ -7,18 +7,25 @@ const loginController = {};
 loginController.verifyUser = async (req, res, next) => {
   // decronstruct body
   const { username, password } = req.body;
+  
   try {
     const userValue = [username];
     const passQuery = "SELECT password FROM user_info WHERE username=$1";
     const passDB = await db.query(passQuery, userValue);
-    const fuck = passDB.rows[0].password;
-    const result = await bcrypt.compare(password, fuck);
-
-    if (!result || !passDB) {
-      return next(err);
-    } else {
-      console.log("User is found!");
+    const pass = passDB.rows[0].password
+    // conditional to check if password is stored as bcrypt
+    if (pass === password) {
+      console.log('User is found!');
       return next();
+    // if pass is not found, then we know its stored as bcrypt
+    } else {
+      const result = await bcrypt.compare(password, pass);
+        if (!result || !passDB) {
+          return next(err);
+        } else {
+          console.log('User is found!');
+          return next();
+        }
     }
   } catch (err) {
     return next({
