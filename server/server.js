@@ -14,40 +14,42 @@ const loginRouter = require("./routes/loginRouter");
 const signupRouter = require("./routes/signupRouter");
 const oauthRouter = require("./routes/oauthRouter");
 
-<<<<<<< HEAD
-=======
-passport.use(new GoogleStrategy({
-  clientID: process.env.GOOGLE_CLIENT_ID,
-  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: "/auth/google/callback"
-},
-async function(accessToken, refreshToken, profile, next) {
-  // usnermne
-  const username = profile.displayName;
-  //avatar_link
-  const avatar = profile.photos[0].value;
-  //password
-  const password = 'placeholder';
-  //googleid
-  const googleid = profile.id;
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: "/auth/google/callback",
+    },
+    async function (accessToken, refreshToken, profile, next) {
+      // usnermne
+      const username = profile.displayName;
+      //avatar_link
+      const avatar = profile.photos[0].value;
+      //password
+      const password = "placeholder";
+      //googleid
+      const googleid = profile.id;
 
-  // SQL query to find or create googleid
-  const find_query = "SELECT googleid FROM user_info WHERE googleid=$1"
-  const valueFind = [googleid];
+      // SQL query to find or create googleid
+      const find_query = "SELECT googleid FROM user_info WHERE googleid=$1";
+      const valueFind = [googleid];
 
-  const addQuery = 'INSERT INTO user_info(username, avatar_link, password, googleid) VALUES ($1, $2, $3, $4)';
-  const value = [username, avatar, password, googleid];
-  
-  const findResult = await db.query(find_query, valueFind)
-  // if google id doesn't exist, create it
-  if (!findResult.rows[0]) {
-    const addResult = await db.query(addQuery, value);
-    console.log('Google ID User created');
-  }
-  return next();
-}));                  
+      const addQuery =
+        "INSERT INTO user_info(username, avatar_link, password, googleid) VALUES ($1, $2, $3, $4)";
+      const value = [username, avatar, password, googleid];
 
->>>>>>> Dev
+      const findResult = await db.query(find_query, valueFind);
+      // if google id doesn't exist, create it
+      if (!findResult.rows[0]) {
+        const addResult = await db.query(addQuery, value);
+        console.log("Google ID User created");
+      }
+      return next();
+    }
+  )
+);
+
 app.use(express.json());
 app.use(express.text());
 app.use(express.urlencoded({ extended: true }));
@@ -64,61 +66,6 @@ app.use("/auth", oauthRouter, (req, res) => res.redirect("/transactions"));
 
 // router for transactions
 app.use("/transactions", transactionRouter);
-
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/auth/google/callback",
-    },
-    async function (accessToken, refreshToken, profile, cb) {
-      // usnermne
-      const username = profile.displayName;
-      //avatar_link
-      const avatar = profile.photos[0].value;
-      //password
-      const password = "placeholder";
-      //googleid
-      const googleid = profile.id;
-
-      // SQL query to find or create googleid
-      const addQuery =
-        "INSERT INTO user_info(username, avatar_link, password, googleid) VALUES ($1, $2, $3, $4)";
-      const value = [username, avatar, password, googleid];
-
-      const find_query = "SELECT googleid FROM user_info";
-      const findResult = await db.query(find_query);
-
-      console.log("find result", findResult);
-
-      // if (!findResult.oid) {
-      //   const addResult = await db.query(add_query, value);
-      //   console.log('add result', addResult)
-      // }
-      // console.log('Value: ', value);
-
-      // const addResult = await db.query(addQuery, value);
-      // console.log('add result', addResult)
-
-      // INSERT INTO user_info(googleid) \
-      //                     SELECT googleid \
-      //                     FROM user_info \
-      //                     WHERE NOT EXISTS ( \
-      //                       SELECT username, avatar_link, password, googleid\
-      //                       WHERE username='TEST' AND avatar_link='TEST' AND password='TEST'AND googleid='TEST')
-      // catch (err) {
-
-      // }
-      // (err, user) => {
-      //   console.log('inside query error')
-      //   return cb(err, user);
-      // });
-      // }
-      // ));
-    }
-  )
-);
 
 // catch all route handler
 app.use("*", (req, res) =>
