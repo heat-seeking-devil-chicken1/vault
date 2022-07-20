@@ -36,7 +36,7 @@ const options = {
 };
 
 export function MonthlySpendingCard() {
-  console.log(moment("2013-01-01T00:00:00.000").format("YYYY MM DD hh:mm:ss"));
+  const [userInfo, setUserInfo] = useContext(InfoContext);
   const labels = [
     "January",
     "February",
@@ -67,6 +67,12 @@ export function MonthlySpendingCard() {
       },
     ],
   };
+
+  // spending
+  if (userInfo.transactions.length > 0) {
+    
+  }
+
   return (
     <Paper
       elevation={12}
@@ -97,7 +103,9 @@ export function MonthlySpendingCard() {
           alignitems: "center",
         }}
       >
-        <Bar options={options} redraw={true} data={data} />
+        {userInfo.loggedIn && (
+          <Bar options={options} redraw={true} data={data} />
+        )}
       </Box>
     </Paper>
   );
