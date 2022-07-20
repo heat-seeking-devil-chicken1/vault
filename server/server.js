@@ -18,10 +18,9 @@ app.use(express.static(path.resolve(__dirname, "../client")));
 app.use("/login", loginRouter);
 
 // router for signup
-app.use("/signup", signupRouter,
-(req, res) => {
-  return res.status(200).redirect('/login')
-});
+app.use("/signup", signupRouter);
+
+// oaauth signup
 
 // catch all route handler
 app.use("*", (req, res) =>
