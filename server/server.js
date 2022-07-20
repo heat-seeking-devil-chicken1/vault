@@ -2,8 +2,8 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const PORT = 3000;
-// const apiRouter = require("./routes/api");
-const transactionRouter = require("../routes/transactions.js");
+
+const transactionRouter = require("./routes/transactions.js");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
