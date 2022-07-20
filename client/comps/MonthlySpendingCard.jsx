@@ -68,11 +68,25 @@ export function MonthlySpendingCard() {
     ],
   };
 
-  // spending
+  // spending display on chart
   if (userInfo.transactions.length > 0) {
-    
+    for (let trans of userInfo.transactions) {
+      const month = moment(trans.dates).format("MMMM");
+      const index = labels.indexOf(month);
+      const amount = parseFloat(trans.amount.slice(1).split(",").join(""));
+      data.datasets[0].data[index] += amount;
+    }
   }
 
+  // income display on chart
+  if (userInfo.incomeArray.length > 0) {
+    for (let income of userInfo.incomeArray) {
+      const month = moment(income.dates).format("MMMM");
+      const index = labels.indexOf(month);
+      const amount = parseFloat(income.amount.slice(1).split(",").join(""));
+      data.datasets[1].data[index] += amount;
+    }
+  }
   return (
     <Paper
       elevation={12}
