@@ -109,7 +109,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 40px 0px 40px;
+  padding: 0px 30px;
   background-color: #7068F4;
   height: 100%;
   text-transform: uppercase;
@@ -211,6 +211,7 @@ body {
 
 .goalsForm {
   display: grid !important;
+  margin-top: 20px;
 }
 
 .goalsButton {
@@ -234,4 +235,13 @@ body {
   width: 100%;
   justify-content: space-between;
   border-bottom: 1px dotted #8080808a;
+}
+
+.MuiAvatar-circular {
+  box-shadow: 1px 0px 15px #00000030;
+  margin: 20px 0px 0 -15px;
+}
+
+header {
+  padding: 0px 20px;
 }
