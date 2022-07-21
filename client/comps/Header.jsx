@@ -66,11 +66,11 @@ const Header = (props) => {
       sx={{
         display: "flex",
         flexDirection: "row",
-        background: "lightgrey",
+        background: "#fafafa",
         justifyContent: "center",
         alignItems: "center",
-        gridArea: "Header"
-        // marginBottom: "40px",
+        gridArea: "Header",
+        boxShadow: "1px 0px 15px #00000030"
       }}
     >
       <Box
@@ -207,7 +207,7 @@ const Header = (props) => {
                 component="h2"
               >
                 WELCOME BACK
-              
+
               </Typography>
               <Box
                 sx={{

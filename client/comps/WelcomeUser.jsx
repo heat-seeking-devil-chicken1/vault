@@ -145,6 +145,7 @@ export function WelcomeUser() {
           SAVINGS GOALS
         </Typography>
         <Box
+          className="goalsForm"
           elevation={3}
           sx={{
             width: "100%",
@@ -172,6 +173,7 @@ export function WelcomeUser() {
             }}
           ></TextField>
           <Button
+            className="goalsButton"
             onClick={() => {
               registerSavings(currentDate, savings);
             }}

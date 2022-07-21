@@ -60,17 +60,19 @@ export function AnnualForecastCard() {
         data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
+        borderWidth: 1,
       },
       {
         label: "SAVINGS GOAL",
         data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         borderColor: "blue",
         backgroundColor: "yellow",
+        borderWidth: 1,
       },
     ],
   };
 
-  useEffect(() => {}, [userInfo]);
+  useEffect(() => { }, [userInfo]);
 
   if (userInfo.transactions.length > 0 && userInfo.incomeArray.length > 0) {
     // run through transaction array
@@ -111,7 +113,9 @@ export function AnnualForecastCard() {
           fontWeight: 600,
         }}
       >
-        ANNUAL FORECAST SAVINGS
+        <Box className="cardTitle">
+          ANNUAL FORECAST SAVINGS
+        </Box>
       </Typography>
       <Box className="forecastChart">
         {userInfo.loggedIn && <Line options={options} data={data} />}

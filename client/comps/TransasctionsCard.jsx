@@ -9,7 +9,7 @@ export function TransactionsCard() {
   const transactionArray = [];
   const transactions = userInfo.transactions;
 
-  const LIMIT = 10;
+  const LIMIT = 100;
   let current = 0;
   if (transactions.length > 0) {
     for (let trans of transactions) {
@@ -43,17 +43,6 @@ export function TransactionsCard() {
             }}
           >
             <div id="transaction-container">
-              <div className="amount">
-                <Typography
-                  sx={{
-                    color: "#7068f4",
-                    fontSize: "25px",
-                    textAlign: "center",
-                  }}
-                >
-                  {trans.amount}
-                </Typography>
-              </div>
               <div className="date">
                 <Typography
                   sx={{
@@ -63,16 +52,29 @@ export function TransactionsCard() {
                   {moment(trans.dates).format("MMMM DD, YYYY")}
                 </Typography>
               </div>
-              <div className="merchant">
-                <Typography
-                  sx={{
-                    paddingLeft: "3px",
-                    fontSize: "25px",
-                    paddingBottom: "0",
-                  }}
-                >
-                  {trans.merchant}
-                </Typography>
+              <div className="transactionsInnerDiv">
+                <div className="merchant">
+                  <Typography
+                    sx={{
+                      paddingLeft: "3px",
+                      fontSize: "1.5em",
+                      paddingBottom: "0",
+                    }}
+                  >
+                    {trans.merchant}
+                  </Typography>
+                </div>
+                <div className="amount">
+                  <Typography
+                    sx={{
+                      color: "#7068f4",
+                      fontSize: "25px",
+                      textAlign: "center",
+                    }}
+                  >
+                    {trans.amount}
+                  </Typography>
+                </div>
               </div>
               <div className="category">
                 <Typography
@@ -80,7 +82,7 @@ export function TransactionsCard() {
                     textTransform: "uppercase",
                     color: "$mediumgrey",
                     paddingLeft: "3px",
-                    fontSize: "15px",
+                    fontSize: "1em",
                   }}
                 >
                   {trans.cat_name}
@@ -105,7 +107,9 @@ export function TransactionsCard() {
           fontWeight: 600,
         }}
       >
-        TRANSACTIONS
+        <Box className="cardTitle">
+          TRANSACTIONS
+        </Box>
       </Typography>
       {userInfo.loggedIn && (
         <Box

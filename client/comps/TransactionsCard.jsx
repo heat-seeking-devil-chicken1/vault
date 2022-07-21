@@ -15,7 +15,9 @@ export function TransactionsCard() {
           fontWeight: 600,
         }}
       >
-        TRANSACTIONS
+        <Box className="cardTitle">
+          TRANSACTIONS
+        </Box>
       </Typography>
     </Paper>
   );

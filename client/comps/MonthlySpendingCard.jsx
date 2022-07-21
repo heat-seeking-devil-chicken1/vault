@@ -59,11 +59,13 @@ export function MonthlySpendingCard() {
         label: "Expenses",
         data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         backgroundColor: "rgba(255, 99, 132, 0.5)",
+        borderWidth: 1,
       },
       {
         label: "Earnings",
         data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         backgroundColor: "rgba(53, 162, 235, 0.5)",
+        borderWidth: 1,
       },
     ],
   };
@@ -97,7 +99,9 @@ export function MonthlySpendingCard() {
           fontWeight: 600,
         }}
       >
-        MONTHLY SPENDING
+        <Box className="cardTitle">
+          MONTHLY SPENDING
+        </Box>
       </Typography>
       <Box className="monthlyChart">
         {userInfo.loggedIn && (

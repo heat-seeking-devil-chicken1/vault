@@ -18,7 +18,9 @@ export function CategorySpendingCard() {
           fontWeight: 600,
         }}
       >
-        SPENDING CATEGORIES
+        <Box className="cardTitle">
+          SPENDING CATEGORIES
+        </Box>
       </Typography>
       {userInfo.loggedIn && <SpendingDoughnutChart redraw />}
     </Box>

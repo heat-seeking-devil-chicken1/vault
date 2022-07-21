@@ -50,7 +50,9 @@ export function CashflowCard() {
           fontWeight: 600,
         }}
       >
-        CASH FLOW
+        <Box className="cardTitle">
+          CASH FLOW
+        </Box>
       </Typography>
       <Box className="cashChart">
         {userInfo.loggedIn && <Pie data={data} options={options} />}
