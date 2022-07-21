@@ -51,7 +51,7 @@ export function CashflowCard() {
         }}
       >
         <Box className="cardTitle">
-          CASH FLOW
+          ANNUAL CASH FLOW
         </Box>
       </Typography>
       <Box className="cashChart">

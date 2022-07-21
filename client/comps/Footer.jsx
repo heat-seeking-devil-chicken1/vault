@@ -3,8 +3,8 @@ import React from "react";
 const Footer = (props) => {
   return (
     <><div className="footer">
-      <div>&copy; STABBIN RABBITS INC.</div>
-      <div>All rights reserved</div>
+      <div>2022 &copy; STABBIN RABBITS INC. dba Vault Finance</div>
+      <div>All rights reserved | Privacy &amp; Cookie Policy</div>
     </div>
     </>
   );

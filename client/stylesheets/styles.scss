@@ -190,8 +190,8 @@ body {
 
 .cardTitle {
   background: #b568f4;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   text-align: center;
   color: white;
   font-weight: 400;
@@ -202,6 +202,7 @@ body {
 .gridCard {
   box-shadow: 1px 0px 15px #00000020 !important;
   transition: 1s;
+  border-radius: 10px;
 }
 
 .gridCard:hover {
@@ -244,4 +245,14 @@ body {
 
 header {
   padding: 0px 20px;
+}
+
+.MuiBox-root.css-5wxq8j {
+  width: 85%;
+  height: 30%;
+  overflow: auto;
+  margin-top: -10px;
+  margin-left: -15px;
+  overflow-x: hidden;
+  padding-right: 10px;
 }
