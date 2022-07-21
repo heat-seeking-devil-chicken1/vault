@@ -6,7 +6,7 @@ import {
   Avatar,
   Box,
   Typography,
-  InputAdornment,
+  Button,
 } from "@mui/material";
 import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
@@ -55,34 +55,56 @@ export function WelcomeUser() {
 
       <Divider />
       {/* appears when user logs into the application */}
-      <Paper
-        elevation={3}
+      <Box
         sx={{
+          display: "flex",
           width: "100%",
-          height: "30%",
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          height: "100%",
+          gap: "10px",
         }}
       >
-        <TextField
-          label="Amount"
-          id="filled-start-adornment"
-          InputProps={{
-            startAdornment: <InputAdornment position="start">$</InputAdornment>,
+        <Typography
+          sx={{
+            fontWeight: 600,
           }}
-          variant="filled"
-        ></TextField>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DesktopDatePicker
-            label="Transaction Date"
-            value={currentDate}
-            inputFormat="MM/dd/yyyy"
-            onChange={(newValue) => {
-              console.log(moment(newValue).format("YYYY-MM-DD"));
-              setCurrentDate(newValue);
-            }}
-            renderInput={(params) => <TextField {...params} />}
-          ></DesktopDatePicker>
-        </LocalizationProvider>
-      </Paper>
+        >
+          SAVINGS GOALS
+        </Typography>
+        <Paper
+          elevation={3}
+          sx={{
+            width: "100%",
+            height: "max-content",
+            paddingTop: "20px",
+            paddingBottom: "20px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DesktopDatePicker
+              label="Transaction Date"
+              inputFormat="MM/dd/yyyy"
+              value={currentDate}
+              onChange={(newValue) => setCurrentDate(newValue)}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
+          <TextField label="Goals"></TextField>
+          <Button>SUBMIT</Button>
+        </Paper>
+        <Paper
+          elevation={3}
+          sx={{
+            width: "100%",
+            height: "100%",
+          }}
+        ></Paper>
+      </Box>
     </Paper>
   );
 }
