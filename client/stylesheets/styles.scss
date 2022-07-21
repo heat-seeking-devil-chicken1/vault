@@ -2,6 +2,7 @@ $white: #ffffff;
 $lightGrey: #f6f6f6;
 $mediumGrey: #ececec;
 $darkGrey: #d0d0d0;
+$textGrey: #2d2d2d;
 $logoPurple: #7068f4;
 $logoPink: #ff64b4;
 $logoYellow: #ffd94a;
@@ -28,7 +29,7 @@ body {
     "header"
     "stats"
     "footer";
-  height: 100vh;
+  height: 100%;
 }
 
 /* HEADER */
@@ -55,117 +56,50 @@ body {
   margin-right: 20px;
 }
 
-/* STATS */
-
-.stats-container {
-  height: 100%;
-  width: 100%;
+#container {
   grid-area: stats;
-  background-color: $lightGrey;
-  display: "flex";
-  flex-direction: "row";
-  justify-content: "center";
-  align-items: "center";
-}
-
-/* STATS: HEADER */
-
-.stats-header {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px;
-  padding: 20px;
-  height: 162px;
-  background-color: #e3e4e6;
-  color: slategray;
-  background-position: center;
-}
-
-.stats-header-heading {
-  font-size: 3em;
-  color: #ffffffb8;
-}
-
-/* STATS: OVERVIEW */
-
-.stats-overview {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
-  grid-auto-rows: 140px;
-  grid-gap: 20px;
-  margin: 20px;
-}
-
-.stats-overview-card {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  background-color: $darkGrey;
-  min-height: 100%;
-  background-size: cover;
-  background-position: bottom;
-}
-
-/* STATS: ACCOUNTS */
-
-.stats-accounts {
-  margin: 60px 20px 20px 20px;
-  display: grid;
-  grid-template-columns: 24.2% 24.2% 1fr;
-  grid-auto-rows: 212px;
-  gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  height: 100%;
   grid-auto-flow: row;
   grid-template-areas:
-    "Assets Budget Transactions"
-    "Balances Trends Transactions";
+    "User-Area User-Area Cash-Flow Cash-Flow Annual-Forecast Annual-Forecast"
+    "User-Area User-Area Cash-Flow Cash-Flow Transactions Transactions"
+    "User-Area User-Area  Category-Spendings Category-Spendings Transactions Transactions"
+    "Monthly-Spendings Monthly-Spendings Category-Spendings Category-Spendings Transactions Transactions";
 }
 
-.stats-accounts-card {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  background-color: $darkGrey;
-  -webkit-column-break-inside: avoid;
-  padding: 24px;
-  box-sizing: border-box;
-  color: black;
+.Cash-Flow {
+  grid-area: Cash-Flow;
+  padding: 30px;
 }
 
-.stats-transactions {
+.Annual-Forecast {
+  grid-area: Annual-Forecast;
+  padding: 30px;
+}
+
+.Monthly-Spendings {
+  grid-area: Monthly-Spendings;
+  padding: 30px;
+}
+
+.Category-Spendings {
+  grid-area: Category-Spendings;
+  padding: 30px;
+}
+
+.Transactions {
   grid-area: Transactions;
-  overflow: scroll;
-  overflow-x: hidden;
+  padding: 30px;
 }
 
-.stats-assets {
-  grid-area: Assets;
+.User-Area {
+  grid-area: User-Area;
+  padding: 30px;
 }
-
-.stats-budget {
-  grid-area: Budget;
-}
-
-.stats-balances {
-  grid-area: Balances;
-}
-
-.stats-balances .cardHeader,
-.stats-assets .cardHeader,
-.stats-budget .cardHeader {
-  color: black !important;
-}
-
-.transactions-card .cardHeader {
-  color: black !important;
-}
-
-.stats-trends {
-  grid-area: Trends;
-}
-
-/* Universal Card Styling */
-
-/* FOOTER */
 
 .footer {
   grid-area: footer;
@@ -176,46 +110,38 @@ body {
   background-color: $darkGrey;
 }
 
-/* Lazy Styling */
-.cardHeader {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: white;
-  background-clip: text;
-  -webkit-background-clip: text;
-  margin-bottom: 20px;
+#transaction-container {
+  background-color: $lightGrey;
+  color: $textGrey;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  width: 100%;
+  height: 100%;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "date date date"
+    "merchant merchant amount"
+    "category category amount";
 }
 
-.transactionItems {
-  display: flex;
-  background: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 1px 0px 15px rgb(0 0 0 / 19%);
+.date {
+  grid-area: date;
   padding: 10px;
-  margin: 5px;
-  align-items: center;
-  justify-content: space-between;
+  text-align: center;
+  background-color: $darkGrey;
 }
-
-.balanceItems {
+.merchant {
+  grid-area: merchant;
+}
+.category {
+  grid-area: category;
+}
+.amount {
   display: flex;
-  flex-direction: column;
-  border-radius: 15px;
-  justify-content: space-between;
-  margin: 10px;
-}
-
-.transactions-left {
-  display: flex;
-  flex-direction: column;
-}
-
-// .transactions-card.stats-accounts-card.stats-transactions.card {
-//   background: url(https://wallpaperaccess.com/full/3970747.jpg);
-// }
-
-.stats-accounts-card,
-.stats-overview-card,
-.stats-header {
-  border-radius: 5px;
+  grid-area: amount;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
 }

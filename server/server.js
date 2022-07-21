@@ -2,17 +2,27 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const PORT = 3000;
+const passport = require("passport");
+const db = require("./models/database");
+const cors = require("cors");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
-const transactionRouter = require("./routes/transactions.js");
-// const loginRouter = require("./routes/loginRouter.js");
-// const signupRouter = require("./routes/signupRouter.js");
+const transactionRouter = require("./routes/transactions");
+const loginRouter = require("./routes/loginRouter");
+const signupRouter = require("./routes/signupRouter");
+const oauthRouter = require("./routes/oauthRouter");
+const { resolve } = require("path");
 
 app.use(express.json());
+app.use(express.text());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.resolve(__dirname, "../client")));
-
-// router for transactions
-// app.use("/transactions", transactionRouter);
+// app.use(express.static(path.resolve(__dirname, "../client")));
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 
 // router for login
 app.use("/login", loginRouter);
@@ -20,7 +30,11 @@ app.use("/login", loginRouter);
 // router for signup
 app.use("/signup", signupRouter);
 
-// oaauth signup
+// oauth signup
+app.use("/auth", oauthRouter);
+
+// router for transactions
+app.use("/transactions", transactionRouter);
 
 // catch all route handler
 app.use("*", (req, res) =>
