@@ -17,7 +17,7 @@ import { Sailing } from "@mui/icons-material";
 
 export function WelcomeUser() {
   const [userInfo, setUserInfo] = useContext(InfoContext);
-  const [currentDate, setCurrentDate] = useState("2022-07-12");
+  const [currentDate, setCurrentDate] = useState("2022-07-22");
   const [savings, setSavings] = useState(0);
   const [listSavings, setListSavings] = useState([]);
 
@@ -33,10 +33,14 @@ export function WelcomeUser() {
       // get current listings
       arraySavings.push(comp);
     }
-    currentSavingsGoal.push({
-        amount: savings,
-        date: date,
+
+    for (let saves of userInfo.savingsGoal) {
+      console.log(saves);
+      currentSavingsGoal.push({
+        amount: saves.amount,
+        date: saves.date,
       });
+    }
 
     // add new listings
     arraySavings.push(

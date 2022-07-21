@@ -9,7 +9,7 @@ export function TransactionsCard() {
   const transactionArray = [];
   const transactions = userInfo.transactions;
 
-  const LIMIT = 40;
+  const LIMIT = 10;
   let current = 0;
   if (transactions.length > 0) {
     for (let trans of transactions) {
@@ -28,7 +28,7 @@ export function TransactionsCard() {
           transition={{
             duration: 1.5,
           }}
-        > 
+        >
           <Box
             sx={{
               width: "100%",
@@ -38,11 +38,11 @@ export function TransactionsCard() {
               alignContent: "stretch",
               flexDirection: "row",
               padding: "2px",
-              borderRadius: "5px"
+              borderRadius: "5px",
             }}
           >
             <div id="transaction-container">
-            {/* <Box
+              {/* <Box
               sx={{
                 width: "50%",
                 height: "max-content",
@@ -54,40 +54,49 @@ export function TransactionsCard() {
               }}
             > */}
               <div className="amount">
-                <Typography sx={{
+                <Typography
+                  sx={{
                     color: "#7068f4",
                     fontSize: "25px",
                     textAlign: "center",
                   }}
-                >{trans.amount}</Typography>
+                >
+                  {trans.amount}
+                </Typography>
               </div>
               <div className="date">
-                <Typography sx={{
+                <Typography
+                  sx={{
                     color: "white",
-                  }}>
+                  }}
+                >
                   {moment(trans.dates).format("MMMM DD, YYYY")}
                 </Typography>
               </div>
               <div className="merchant">
-                <Typography 
+                <Typography
                   sx={{
                     paddingLeft: "3px",
                     fontSize: "25px",
                     paddingBottom: "0",
                   }}
-                >{trans.merchant}</Typography>
+                >
+                  {trans.merchant}
+                </Typography>
               </div>
               <div className="category">
-                <Typography 
+                <Typography
                   sx={{
                     textTransform: "uppercase",
                     color: "$mediumgrey",
                     paddingLeft: "3px",
                     fontSize: "15px",
                   }}
-                >{trans.cat_name}</Typography>
+                >
+                  {trans.cat_name}
+                </Typography>
               </div>
-          </div>
+            </div>
           </Box>
         </motion.div>
       );
