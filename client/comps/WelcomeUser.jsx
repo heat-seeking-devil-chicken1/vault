@@ -13,10 +13,67 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { useContext } from "react";
 import { InfoContext } from "../containers/MainContainer.jsx";
 import moment from "moment";
+import { Sailing } from "@mui/icons-material";
 
 export function WelcomeUser() {
   const [userInfo, setUserInfo] = useContext(InfoContext);
   const [currentDate, setCurrentDate] = useState("2022-07-12");
+  const [savings, setSavings] = useState(0);
+  const [listSavings, setListSavings] = useState([]);
+
+  let currencyFormatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+
+  function registerSavings(date, savings) {
+    const arraySavings = [];
+    const currentSavingsGoal = [];
+    for (let comp of listSavings) {
+      currentSavingsGoal.push({
+        amount: savings,
+        date: date,
+      });
+      // get current listings
+      arraySavings.push(comp);
+    }
+    // add new listings
+    arraySavings.push(
+      <Box
+        sx={{
+          display: "flex",
+          width: "100%",
+        }}
+      >
+        <Typography
+          sx={{
+            width: "50%",
+            textAlign: "left",
+          }}
+        >
+          {moment(currentDate).format("MMMM/DD/yyyy")}
+        </Typography>
+        <Typography
+          sx={{
+            width: "50%",
+            textAlign: "right",
+          }}
+        >
+          {currencyFormatter.format(savings)}
+        </Typography>
+      </Box>
+    );
+    currentSavingsGoal.push({
+      amount: savings,
+      date: date,
+    });
+    setListSavings(arraySavings);
+    setUserInfo({
+      ...userInfo,
+      savingsGoal: currentSavingsGoal,
+    });
+  }
+
   return (
     <Paper
       elevation={12}
@@ -94,8 +151,19 @@ export function WelcomeUser() {
               renderInput={(params) => <TextField {...params} />}
             />
           </LocalizationProvider>
-          <TextField label="Goals"></TextField>
-          <Button>SUBMIT</Button>
+          <TextField
+            label="Goals"
+            onChange={(e) => {
+              setSavings(e.target.value);
+            }}
+          ></TextField>
+          <Button
+            onClick={() => {
+              registerSavings(currentDate, savings);
+            }}
+          >
+            SUBMIT
+          </Button>
         </Paper>
         <Paper
           elevation={3}
@@ -103,7 +171,9 @@ export function WelcomeUser() {
             width: "100%",
             height: "100%",
           }}
-        ></Paper>
+        >
+          {listSavings}
+        </Paper>
       </Box>
     </Paper>
   );

@@ -40,6 +40,7 @@ const Header = (props) => {
       allSum: result.allSum,
       incomeArray: result.incomeArray,
       totalIncome: result.totalIncome,
+      savingsGoal: [],
     });
     setLoginAppear(false);
     setUserLoggedIn(true);
