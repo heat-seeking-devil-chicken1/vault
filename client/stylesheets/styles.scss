@@ -84,6 +84,7 @@ body {
 .Monthly-Spendings {
   grid-area: Monthly-Spendings;
   padding: 30px;
+  max-width: 300px;
 }
 
 .Category-Spendings {
@@ -102,12 +103,36 @@ body {
 }
 
 .footer {
-  grid-area: footer;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
   background-color: $darkGrey;
+  height: 100%;
+}
+
+.forecastChart {
+  height: 38vh;
+  position: relative;
+  width: 100%;
+}
+
+.chartDiv {
+  height: 38vh;
+  position: relative;
+  width: 100%;
+}
+
+.cashChart {
+  height: 35vh;
+  position: relative;
+  width: 100%;
+}
+
+.monthlyChart {
+  height: 38vh;
+  position: relative;
+  width: 100%;
 }
 
 #transaction-container {
@@ -145,3 +170,4 @@ body {
   justify-content: center;
   align-content: center;
 }
+

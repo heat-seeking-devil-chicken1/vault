@@ -24,6 +24,7 @@ ChartJS.register(
 
 const options = {
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       position: "top",
@@ -87,16 +88,8 @@ export function MonthlySpendingCard() {
     }
   }
   return (
-    <Paper
-      elevation={12}
+    <Box
       sx={{
-        height: "100%",
-        width: "100%",
-        borderRadius: "20px",
-        padding: "10px",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
       }}
     >
       <Typography
@@ -106,20 +99,11 @@ export function MonthlySpendingCard() {
       >
         MONTHLY SPENDING
       </Typography>
-      <Box
-        sx={{
-          display: "flex",
-          height: "100%",
-          width: "100%",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignitems: "center",
-        }}
-      >
+      <Box className="monthlyChart">
         {userInfo.loggedIn && (
           <Bar options={options} redraw={true} data={data} />
         )}
       </Box>
-    </Paper>
+    </Box>
   );
 }

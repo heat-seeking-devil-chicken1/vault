@@ -39,20 +39,10 @@ export function TransactionsCard() {
               flexDirection: "row",
               padding: "2px",
               borderRadius: "5px",
+
             }}
           >
             <div id="transaction-container">
-              {/* <Box
-              sx={{
-                width: "50%",
-                height: "max-content",
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "flex-start",
-                width: "100%",
-                paddingLeft: "20px",
-              }}
-            > */}
               <div className="amount">
                 <Typography
                   sx={{
@@ -97,6 +87,7 @@ export function TransactionsCard() {
                 </Typography>
               </div>
             </div>
+
           </Box>
         </motion.div>
       );
@@ -105,21 +96,10 @@ export function TransactionsCard() {
   }
 
   return (
-    <Paper
-      elevation={12}
-      sx={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        padding: "10px",
-        alignItems: "center",
-        justifyContent: "flex-start",
-        padding: "10px",
-        borderRadius: "20px",
-        overflow: "auto",
-      }}
-    >
+    <Box className="transactionsList" sx={{
+      maxHeight: "400px",
+      // overflowY: "auto"
+    }}>
       <Typography
         sx={{
           fontWeight: 600,
@@ -130,18 +110,12 @@ export function TransactionsCard() {
       {userInfo.loggedIn && (
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-            height: "100%",
-            overflow: "auto",
+            // overflow: "scroll",
           }}
         >
           {transactionArray}
         </Box>
       )}
-    </Paper>
+    </Box>
   );
 }

@@ -26,6 +26,7 @@ ChartJS.register(
 
 const options = {
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       position: "top",
@@ -101,18 +102,8 @@ export function AnnualForecastCard() {
   }
 
   return (
-    <Paper
-      elevation={12}
+    <Box
       sx={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        padding: "10px",
-        alignItems: "center",
-        justifyContent: "flex-start",
-        padding: "10px",
-        borderRadius: "20px",
       }}
     >
       <Typography
@@ -122,18 +113,9 @@ export function AnnualForecastCard() {
       >
         ANNUAL FORECAST SAVINGS
       </Typography>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          height: "100%",
-          width: "100%",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <Box className="forecastChart">
         {userInfo.loggedIn && <Line options={options} data={data} />}
       </Box>
-    </Paper>
+    </Box>
   );
 }

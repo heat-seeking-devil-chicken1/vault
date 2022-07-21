@@ -50,5 +50,22 @@ export function SpendingDoughnutChart() {
       },
     ],
   };
-  return <Doughnut data={data} />;
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+    },
+  };
+
+  return <>
+    <div className="chartDiv">
+      <Doughnut data={data} options={options} />
+    </div>
+  </>
+
+    ;
 }

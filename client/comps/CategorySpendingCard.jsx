@@ -8,16 +8,9 @@ export function CategorySpendingCard() {
   const [userInfo, setUserInfo] = useContext(InfoContext);
 
   return (
-    <Paper
-      elevation={12}
+    <Box
       sx={{
-        height: "100%",
-        width: "100%",
-        borderRadius: "20px",
-        padding: "10px",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
+
       }}
     >
       <Typography
@@ -27,18 +20,7 @@ export function CategorySpendingCard() {
       >
         SPENDING CATEGORIES
       </Typography>
-      <Box
-        sx={{
-          display: "flex",
-          height: "100%",
-          width: "100%",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignitems: "center",
-        }}
-      >
-        {userInfo.loggedIn && <SpendingDoughnutChart redraw />}
-      </Box>
-    </Paper>
+      {userInfo.loggedIn && <SpendingDoughnutChart redraw />}
+    </Box>
   );
 }
