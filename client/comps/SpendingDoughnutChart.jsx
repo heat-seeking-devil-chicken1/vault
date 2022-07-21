@@ -50,9 +50,20 @@ export function SpendingDoughnutChart() {
       },
     ],
   };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+    },
+  };
+
   return <>
     <div className="chartDiv">
-      <Doughnut data={data} />
+      <Doughnut data={data} options={options} />
     </div>
   </>
 

@@ -7,15 +7,7 @@ export function TransactionsCard() {
     <Paper
       elevation={12}
       sx={{
-        height: "100%",
-        width: "auto",
-        display: "flex",
-        flexDirection: "column",
-        padding: "10px",
-        alignItems: "center",
-        justifyContent: "flex-start",
-        padding: "10px",
-        borderRadius: "20px",
+
       }}
     >
       <Typography

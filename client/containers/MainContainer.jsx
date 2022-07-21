@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
-import { Grid, Container } from '@mui/material';
+import { Grid, Container, Paper, AppBar, Box, autocompleteClasses } from '@mui/material';
 import "../stylesheets/styles.scss";
 import Header from "../comps/Header.jsx";
 import Footer from "../comps/Footer.jsx";
@@ -30,53 +30,71 @@ export function MainContainer() {
     }
   }, [userInfo]);
 
-  // Fixed number of columns
-  const gridContainer = {
+  // Full viewport, inner grid system
+  const outerGridContainer = {
     display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
-    gridAutoRows: "minmax(400px, 1fr)",
-    marginTop: "40px",
-    height: "93vh"
-  };
+    gridTemplateColumns: "1fr",
+    gridTemplateRows: "50px 1fr 50px",
+    height: "100vh",
+    gap: "0px 0px",
+    gridTemplateAreas: `    
+    "Header"
+    "CardContainer"
+    "Footer"`
+  }
 
-  // Variable number of columns
-  const gridContainer2 = {
+  // const innerGridContainer = {
+  //   display: "grid",
+  //   gridTemplateColumns: "repeat(3, 1fr)",
+  //   gridAutoRows: "minmax(300px, 1fr)"
+  // };
+
+  const innerGridContainer = {
     display: "grid",
-    gridAutoColumns: "1fr",
-    gridAutoFlow: "column"
+    gridTemplateColumns: "1fr 1fr 1fr 1fr",
+    gridTemplateRows: "50% 50%",
+    gap: "20px",
+    padding: "20px",
+    gridTemplateAreas: ` 
+      "Profile Monthly Category Transactions"
+      "CashFlow Annual Annual Annual"
+      `,
+    gridArea: "CardContainer",
+    overFlowY: "auto"
   };
-
   return (
     <>
-      <Container maxWidth="false">
+      <Grid container sx={outerGridContainer}>
         <InfoContext.Provider value={[userInfo, setUserInfo]}>
-          <Header />
-          <Grid container spacing={4} className="outer-grid" direction="column" sx={gridContainer}>
-            <Grid item lg>
+          <Box item sx={{ gridArea: "Header" }}>
+            <Header />
+          </Box>
+          <Grid container sx={innerGridContainer}>
+            <Paper item className="gridCard" sx={{ gridArea: "Profile" }}>
               <WelcomeUser />
-            </Grid>
-            <Grid item lg>
-              <CashflowCard></CashflowCard>
-            </Grid>
-            <Grid item lg>
-              <AnnualForecastCard />
-            </Grid>
-
-            <Grid item lg>
+            </Paper>
+            <Paper item className="gridCard" sx={{ gridArea: "Monthly" }}>
               <MonthlySpendingCard />
-            </Grid>
-            <Grid item lg>
+            </Paper>
+            <Paper item className="gridCard" sx={{ gridArea: "Category" }}>
               <CategorySpendingCard />
-            </Grid>
-            <Grid item lg>
+            </Paper>
+            <Paper item className="gridCard" sx={{ gridArea: "Annual", overflowY: "auto" }}>
+              <AnnualForecastCard />
+            </Paper>
+            <Paper item className="gridCard" sx={{ gridArea: "CashFlow" }}>
+              <CashflowCard></CashflowCard>
+            </Paper>
+            <Paper item className="gridCard" sx={{ gridArea: "Transactions", overflowY: "auto" }}>
               <TransactionsCard />
-            </Grid>
+            </Paper>
           </Grid>
+
+          <Box item sx={{ gridArea: "Footer" }}>
+            <Footer />
+          </Box>
         </InfoContext.Provider>
-        <div className="footer">
-          <Footer />
-        </div>
-      </Container>
+      </Grid >
     </>
   );
 }

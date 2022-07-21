@@ -28,19 +28,21 @@ export function CashflowCard() {
       },
     ],
   };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+    },
+  };
+
   return (
-    <Paper
-      elevation={12}
+    <Box
       sx={{
-        height: "100%",
-        width: "auto",
-        display: "flex",
-        flexDirection: "column",
-        padding: "10px",
-        alignItems: "center",
-        justifyContent: "flex-start",
-        padding: "10px",
-        borderRadius: "20px",
+
       }}
     >
       <Typography
@@ -50,18 +52,9 @@ export function CashflowCard() {
       >
         CASH FLOW
       </Typography>
-      <Box
-        sx={{
-          maxHeight: "100%",
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignitems: "center",
-        }}
-      >
-        {userInfo.loggedIn && <Pie data={data} />}
+      <Box className="cashChart">
+        {userInfo.loggedIn && <Pie data={data} options={options} />}
       </Box>
-    </Paper>
+    </Box>
   );
 }
