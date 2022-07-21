@@ -9,7 +9,7 @@ export function TransactionsCard() {
   const transactionArray = [];
   const transactions = userInfo.transactions;
 
-  const LIMIT = 35;
+  const LIMIT = 10;
   let current = 0;
   if (transactions.length > 0) {
     for (let trans of transactions) {
@@ -31,41 +31,63 @@ export function TransactionsCard() {
         >
           <Box
             sx={{
-              // width: "100%",
-              // height: "max-content",
-              // display: "flex",
-              // flexDirection: "row",
-              // width: "100%",
+              width: "100%",
+              height: "max-content",
+              display: "flex",
+              justifyContent: "center",
+              alignContent: "stretch",
+              flexDirection: "row",
+              padding: "2px",
+              borderRadius: "5px",
+
             }}
           >
-            <Box
-              sx={{
-                // width: "50%",
-                // height: "max-content",
-                // display: "flex",
-                // flexDirection: "row",
-                // alignItems: "flex-start",
-                // width: "100%",
-                // paddingLeft: "20px",
-              }}
-            >
-              <Typography>{trans.amount}</Typography>
-            </Box>
-            <Box
-              sx={{
-                // width: "50%",
-                // height: "max-content",
-                // display: "flex",
-                // flexDirection: "row",
-                // alignItems: "flex-end",
-                // justifyContent: "flex-end",
-                // paddingRight: "20px",
-              }}
-            >
-              <Typography>
-                {moment(trans.dates).format("MMMM DD, YYYY")}
-              </Typography>
-            </Box>
+            <div id="transaction-container">
+              <div className="amount">
+                <Typography
+                  sx={{
+                    color: "#7068f4",
+                    fontSize: "25px",
+                    textAlign: "center",
+                  }}
+                >
+                  {trans.amount}
+                </Typography>
+              </div>
+              <div className="date">
+                <Typography
+                  sx={{
+                    color: "white",
+                  }}
+                >
+                  {moment(trans.dates).format("MMMM DD, YYYY")}
+                </Typography>
+              </div>
+              <div className="merchant">
+                <Typography
+                  sx={{
+                    paddingLeft: "3px",
+                    fontSize: "25px",
+                    paddingBottom: "0",
+                  }}
+                >
+                  {trans.merchant}
+                </Typography>
+              </div>
+              <div className="category">
+                <Typography
+                  sx={{
+                    textTransform: "uppercase",
+                    color: "$mediumgrey",
+                    paddingLeft: "3px",
+                    fontSize: "15px",
+                  }}
+                >
+                  {trans.cat_name}
+                </Typography>
+              </div>
+            </div>
+
           </Box>
         </motion.div>
       );

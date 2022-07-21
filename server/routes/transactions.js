@@ -6,7 +6,6 @@ router.get(
   dataController.getCategories,
   dataController.getSum,
   (req, res) => {
-    console.log("landed on /categories");
     res.status(200).json(res.locals);
   }
 );

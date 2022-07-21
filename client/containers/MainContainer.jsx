@@ -22,11 +22,11 @@ export function MainContainer() {
     allSum: 0,
     incomeArray: [],
     totalIncome: 0,
+    savingsGoals: [],
   });
 
   useEffect(() => {
     if (userInfo.loggedIn) {
-      console.log(userInfo);
     }
   }, [userInfo]);
 
