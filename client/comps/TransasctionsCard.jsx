@@ -9,7 +9,7 @@ export function TransactionsCard() {
   const transactionArray = [];
   const transactions = userInfo.transactions;
 
-  const LIMIT = 35;
+  const LIMIT = 40;
   let current = 0;
   if (transactions.length > 0) {
     for (let trans of transactions) {
