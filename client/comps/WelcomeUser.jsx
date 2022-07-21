@@ -99,19 +99,23 @@ export function WelcomeUser() {
           height: "10%",
         }}
       >
-        <Avatar sx={{
-          height: "80px",
-          width: "80px",
-        }}
-        src={userInfo.avatar}></Avatar>
-        {userInfo.loggedIn && <Typography
+        <Avatar
           sx={{
-            fontWeight: "600",
-            fontSize: "25px",
+            height: "80px",
+            width: "80px",
           }}
-        >
-          Welcome, {userInfo.user_name}
-        </Typography>}
+          src={userInfo.avatar}
+        ></Avatar>
+        {userInfo.loggedIn && (
+          <Typography
+            sx={{
+              fontWeight: "600",
+              fontSize: "25px",
+            }}
+          >
+            Welcome, {userInfo.user_name}
+          </Typography>
+        )}
         {/* blank for info of user */}
       </Box>
 
