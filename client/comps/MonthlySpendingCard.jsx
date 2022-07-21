@@ -10,7 +10,6 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { faker } from "@faker-js/faker";
 import { Paper, Typography, Box } from "@mui/material";
 import moment from "moment";
 
