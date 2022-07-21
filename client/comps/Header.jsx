@@ -14,6 +14,7 @@ const Header = (props) => {
   // boolean value to show modal login and modal register
   const [loginAppear, setLoginAppear] = useState(false);
   const [registerAppear, setRegisterAppear] = useState(false);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useContext(InfoContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -63,7 +64,7 @@ const Header = (props) => {
       >
         <img src={logo} width="50px" height="96%"></img>
       </Box>
-
+      
       <Box
         sx={{
           width: "100%",
@@ -183,7 +184,6 @@ const Header = (props) => {
           </Box>
         </Modal>
       )}
-
       {registerAppear && (
         <Modal
           sx={{
