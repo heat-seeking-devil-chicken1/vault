@@ -9,7 +9,7 @@ export function TransactionsCard() {
   const transactionArray = [];
   const transactions = userInfo.transactions;
 
-  const LIMIT = 10;
+  const LIMIT = 100;
   let current = 0;
   if (transactions.length > 0) {
     for (let trans of transactions) {
@@ -39,31 +39,10 @@ export function TransactionsCard() {
               flexDirection: "row",
               padding: "2px",
               borderRadius: "5px",
+
             }}
           >
             <div id="transaction-container">
-              {/* <Box
-              sx={{
-                width: "50%",
-                height: "max-content",
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "flex-start",
-                width: "100%",
-                paddingLeft: "20px",
-              }}
-            > */}
-              <div className="amount">
-                <Typography
-                  sx={{
-                    color: "#7068f4",
-                    fontSize: "25px",
-                    textAlign: "center",
-                  }}
-                >
-                  {trans.amount}
-                </Typography>
-              </div>
               <div className="date">
                 <Typography
                   sx={{
@@ -73,16 +52,29 @@ export function TransactionsCard() {
                   {moment(trans.dates).format("MMMM DD, YYYY")}
                 </Typography>
               </div>
-              <div className="merchant">
-                <Typography
-                  sx={{
-                    paddingLeft: "3px",
-                    fontSize: "25px",
-                    paddingBottom: "0",
-                  }}
-                >
-                  {trans.merchant}
-                </Typography>
+              <div className="transactionsInnerDiv">
+                <div className="merchant">
+                  <Typography
+                    sx={{
+                      paddingLeft: "3px",
+                      fontSize: "1.5em",
+                      paddingBottom: "0",
+                    }}
+                  >
+                    {trans.merchant}
+                  </Typography>
+                </div>
+                <div className="amount">
+                  <Typography
+                    sx={{
+                      color: "#7068f4",
+                      fontSize: "25px",
+                      textAlign: "center",
+                    }}
+                  >
+                    {trans.amount}
+                  </Typography>
+                </div>
               </div>
               <div className="category">
                 <Typography
@@ -90,13 +82,14 @@ export function TransactionsCard() {
                     textTransform: "uppercase",
                     color: "$mediumgrey",
                     paddingLeft: "3px",
-                    fontSize: "15px",
+                    fontSize: "1em",
                   }}
                 >
                   {trans.cat_name}
                 </Typography>
               </div>
             </div>
+
           </Box>
         </motion.div>
       );
@@ -105,43 +98,28 @@ export function TransactionsCard() {
   }
 
   return (
-    <Paper
-      elevation={12}
-      sx={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        padding: "10px",
-        alignItems: "center",
-        justifyContent: "flex-start",
-        padding: "10px",
-        borderRadius: "20px",
-        overflow: "auto",
-      }}
-    >
+    <Box className="transactionsList" sx={{
+      maxHeight: "400px",
+      // overflowY: "auto"
+    }}>
       <Typography
         sx={{
           fontWeight: 600,
         }}
       >
-        TRANSACTIONS
+        <Box className="cardTitle">
+          TRANSACTIONS
+        </Box>
       </Typography>
       {userInfo.loggedIn && (
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-            height: "100%",
-            overflow: "auto",
+            // overflow: "scroll",
           }}
         >
           {transactionArray}
         </Box>
       )}
-    </Paper>
+    </Box>
   );
 }

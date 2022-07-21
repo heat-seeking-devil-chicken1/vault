@@ -24,6 +24,7 @@ ChartJS.register(
 
 const options = {
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       position: "top",
@@ -58,11 +59,13 @@ export function MonthlySpendingCard() {
         label: "Expenses",
         data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         backgroundColor: "rgba(255, 99, 132, 0.5)",
+        borderWidth: 1,
       },
       {
         label: "Earnings",
         data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         backgroundColor: "rgba(53, 162, 235, 0.5)",
+        borderWidth: 1,
       },
     ],
   };
@@ -87,16 +90,8 @@ export function MonthlySpendingCard() {
     }
   }
   return (
-    <Paper
-      elevation={12}
+    <Box
       sx={{
-        height: "100%",
-        width: "100%",
-        borderRadius: "20px",
-        padding: "10px",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
       }}
     >
       <Typography
@@ -104,22 +99,15 @@ export function MonthlySpendingCard() {
           fontWeight: 600,
         }}
       >
-        MONTHLY SPENDING
+        <Box className="cardTitle">
+          MONTHLY SPENDING
+        </Box>
       </Typography>
-      <Box
-        sx={{
-          display: "flex",
-          height: "100%",
-          width: "100%",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignitems: "center",
-        }}
-      >
+      <Box className="monthlyChart">
         {userInfo.loggedIn && (
           <Bar options={options} redraw={true} data={data} />
         )}
       </Box>
-    </Paper>
+    </Box>
   );
 }

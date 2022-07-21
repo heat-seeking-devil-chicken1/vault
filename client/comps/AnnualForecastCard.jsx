@@ -26,6 +26,7 @@ ChartJS.register(
 
 const options = {
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       position: "top",
@@ -59,17 +60,19 @@ export function AnnualForecastCard() {
         data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
+        borderWidth: 1,
       },
       {
         label: "SAVINGS GOAL",
         data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         borderColor: "blue",
         backgroundColor: "yellow",
+        borderWidth: 1,
       },
     ],
   };
 
-  useEffect(() => {}, [userInfo]);
+  useEffect(() => { }, [userInfo]);
 
   if (userInfo.transactions.length > 0 && userInfo.incomeArray.length > 0) {
     // run through transaction array
@@ -101,18 +104,8 @@ export function AnnualForecastCard() {
   }
 
   return (
-    <Paper
-      elevation={12}
+    <Box
       sx={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        padding: "10px",
-        alignItems: "center",
-        justifyContent: "flex-start",
-        padding: "10px",
-        borderRadius: "20px",
       }}
     >
       <Typography
@@ -120,20 +113,13 @@ export function AnnualForecastCard() {
           fontWeight: 600,
         }}
       >
-        ANNUAL FORECAST SAVINGS
+        <Box className="cardTitle">
+          ANNUAL FORECAST SAVINGS
+        </Box>
       </Typography>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          height: "100%",
-          width: "100%",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <Box className="forecastChart">
         {userInfo.loggedIn && <Line options={options} data={data} />}
       </Box>
-    </Paper>
+    </Box>
   );
 }

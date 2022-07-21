@@ -80,7 +80,7 @@ export function WelcomeUser() {
   }
 
   return (
-    <Paper
+    <Box
       elevation={12}
       sx={{
         width: "100%",
@@ -144,7 +144,8 @@ export function WelcomeUser() {
         >
           SAVINGS GOALS
         </Typography>
-        <Paper
+        <Box
+          className="goalsForm"
           elevation={3}
           sx={{
             width: "100%",
@@ -172,14 +173,15 @@ export function WelcomeUser() {
             }}
           ></TextField>
           <Button
+            className="goalsButton"
             onClick={() => {
               registerSavings(currentDate, savings);
             }}
           >
             SUBMIT
           </Button>
-        </Paper>
-        <Paper
+        </Box>
+        <Box
           elevation={3}
           sx={{
             width: "100%",
@@ -187,8 +189,8 @@ export function WelcomeUser() {
           }}
         >
           {listSavings}
-        </Paper>
+        </Box>
       </Box>
-    </Paper>
+    </Box>
   );
 }

@@ -64,13 +64,13 @@ const Header = (props) => {
   return (
     <AppBar
       sx={{
-        height: "5%",
-        width: "100%",
         display: "flex",
         flexDirection: "row",
-        background: "lightgrey",
+        background: "#fafafa",
         justifyContent: "center",
         alignItems: "center",
+        gridArea: "Header",
+        boxShadow: "1px 0px 15px #00000030"
       }}
     >
       <Box
@@ -207,7 +207,7 @@ const Header = (props) => {
                 component="h2"
               >
                 WELCOME BACK
-              
+
               </Typography>
               <Box
                 sx={{
