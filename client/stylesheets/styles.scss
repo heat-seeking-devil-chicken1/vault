@@ -112,12 +112,12 @@ body {
 
 #transaction-container {
   background-color: $lightGrey;
+  color: $textGrey;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   gap: 0px 0px;
   width: 100%;
-  padding: 5px;
   height: 100%;
   grid-auto-flow: row;
   grid-template-areas:
@@ -131,20 +131,17 @@ body {
   padding: 10px;
   text-align: center;
   background-color: $darkGrey;
-  color: $logoPurple;
 }
 .merchant {
   grid-area: merchant;
-  padding-left: 3px;
-  font-size: 15px;
-  font-weight: 600;
 }
 .category {
   grid-area: category;
-  padding-left: 3px;
 }
 .amount {
+  display: flex;
   grid-area: amount;
-  padding: 10px;
   text-align: center;
+  justify-content: center;
+  align-content: center;
 }

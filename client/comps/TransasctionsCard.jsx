@@ -38,7 +38,7 @@ export function TransactionsCard() {
               alignContent: "stretch",
               flexDirection: "row",
               padding: "2px",
-              borderRadius: "3px"
+              borderRadius: "5px"
             }}
           >
             <div id="transaction-container">
@@ -54,20 +54,33 @@ export function TransactionsCard() {
               }}
             > */}
               <div className="amount">
-                <Typography>{trans.amount}</Typography>
+                <Typography sx={{
+                    color: "#7068f4",
+                    fontSize: "25px",
+                    textAlign: "center",
+                  }}
+                >{trans.amount}</Typography>
               </div>
               <div className="date">
-                <Typography>
+                <Typography sx={{
+                    color: "white",
+                  }}>
                   {moment(trans.dates).format("MMMM DD, YYYY")}
                 </Typography>
               </div>
               <div className="merchant">
-                <Typography>{trans.merchant}</Typography>
+                <Typography 
+                  sx={{
+                    paddingLeft: "3px",
+                    fontSize: "25px",
+                    paddingBottom: "0",
+                  }}
+                >{trans.merchant}</Typography>
               </div>
               <div className="category">
                 <Typography 
                   sx={{
-                    fontTransform: "uppercase",
+                    textTransform: "uppercase",
                     color: "$mediumgrey",
                     paddingLeft: "3px",
                     fontSize: "15px",

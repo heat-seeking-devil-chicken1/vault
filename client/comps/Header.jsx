@@ -206,6 +206,7 @@ const Header = (props) => {
                 component="h2"
               >
                 WELCOME BACK
+              
               </Typography>
               <Box
                 sx={{
@@ -255,6 +256,22 @@ const Header = (props) => {
                   }}
                 >
                   Login
+                </Button>
+                <Button
+                  sx={{
+                    backgroundColor: "#ffd94a",
+                    borderRadius: "3px",
+                    padding: "10px",
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  onClick={() => {
+                    setRegisterAppear(false);
+                  }}
+                >
+                  <GoogleIcon></GoogleIcon>
                 </Button>
               </Box>
             </Box>
