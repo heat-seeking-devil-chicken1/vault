@@ -9,11 +9,14 @@ import {
   TextField,
 } from "@mui/material";
 import { InfoContext } from "../containers/MainContainer.jsx";
+import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded";
+import GoogleIcon from "@mui/icons-material/Google";
 
 const Header = (props) => {
   // boolean value to show modal login and modal register
   const [loginAppear, setLoginAppear] = useState(false);
   const [registerAppear, setRegisterAppear] = useState(false);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useContext(InfoContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -39,6 +42,22 @@ const Header = (props) => {
       totalIncome: result.totalIncome,
     });
     setLoginAppear(false);
+    setUserLoggedIn(true);
+  }
+
+  function signout() {
+    setUserLoggedIn(false);
+    setUserInfo({
+      loggedIn: false,
+      avatar: "",
+      user_name: "",
+      accounts: [], // { accountName: "", accountBalance: 0, accountType: "" }
+      transactions: [], // { transactionName: "", transactionAmount: 0, transactionDate: "" }
+      categories: [], // { categoryName: ''}
+      allSum: 0,
+      incomeArray: [],
+      totalIncome: 0,
+    });
   }
 
   return (
@@ -77,37 +96,59 @@ const Header = (props) => {
         }}
         small
       >
-        <Button
-          variant="contained"
-          sx={{
-            height: "80%",
-          }}
-          onClick={() => {
-            setLoginAppear(true);
-          }}
-        >
-          LOGIN
-        </Button>
+        {!userLoggedIn && (
+          <Button
+            variant="contained"
+            sx={{
+              height: "80%",
+            }}
+            onClick={() => {
+              setLoginAppear(true);
+            }}
+          >
+            LOGIN
+          </Button>
+        )}
 
-        <Button
-          variant="contained"
-          sx={{
-            height: "80%",
-            backgroundColor: "secondary.main",
-          }}
-          onClick={() => {
-            setRegisterAppear(true);
-          }}
-        >
-          REGISTER
-        </Button>
+        {!userLoggedIn && (
+          <Button
+            variant="contained"
+            sx={{
+              height: "80%",
+              backgroundColor: "secondary.main",
+            }}
+            onClick={() => {
+              setRegisterAppear(true);
+            }}
+          >
+            REGISTER
+          </Button>
+        )}
+
+        {userLoggedIn && (
+          <Button
+            variant="contained"
+            sx={{
+              height: "80%",
+              backgroundColor: "secondary.main",
+            }}
+            onClick={() => {
+              signout();
+            }}
+          >
+            SIGN OUT
+          </Button>
+        )}
       </Box>
+
+      {/* Modal */}
       {loginAppear && (
         <Modal
           sx={{
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
-            margin: "50px",
+            alignItems: "center",
           }}
           open={open}
           aria-labelledby="modal-modal-title"
@@ -116,7 +157,7 @@ const Header = (props) => {
           <Box
             sx={{
               display: "flex",
-              justifyContent: "center",
+              justifyContent: "flex-start",
               flexDirection: "column",
               alignItems: "center",
               height: "70%",
@@ -126,70 +167,107 @@ const Header = (props) => {
               borderRadius: "10px",
             }}
           >
-            <Box>
-              <img src={logo} width="100px" height="100px"></img>
+            <Box
+              sx={{
+                display: "flex",
+                height: "50px",
+                width: "100%",
+                flexDirection: "row",
+                justifyContent: "flex-end",
+                alignItems: "flex-start",
+              }}
+            >
+              <HighlightOffRoundedIcon
+                onClick={() => setLoginAppear(false)}
+                sx={{
+                  color: "black",
+                  cursor: "pointer",
+                }}
+              ></HighlightOffRoundedIcon>
             </Box>
-            <Typography
-              sx={{ color: "#2d2d2d", padding: "30px" }}
-              id="welcome-text"
-              variant="h6"
-              component="h2"
-            >
-              Welcome back
-            </Typography>
-            <TextField
-              id="username"
-              label="username"
+
+            <Box
               sx={{
-                backgroundColor: "#7068f4",
-                borderRadius: "3px",
-                "&:hover": {
-                  backgroundColor: "#ececec",
-                },
-              }}
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
-            ></TextField>
-            <br></br>
-            <TextField
-              id="password"
-              type="password"
-              label="password"
-              sx={{
-                backgroundColor: "#7068f4",
-                borderRadius: "3px",
-                "&:hover": {
-                  backgroundColor: "#ececec",
-                },
-              }}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            ></TextField>
-            <br></br>
-            <Button
-              sx={{
-                backgroundColor: "#ffd94a",
-                borderRadius: "3px",
-                padding: "10px",
-              }}
-              onClick={() => {
-                submitInformation();
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
-              Login
-            </Button>
+              <Box>
+                <img src={logo} width="100px" height="100px"></img>
+              </Box>
+              <Typography
+                sx={{ color: "#2d2d2d", padding: "30px" }}
+                id="welcome-text"
+                variant="h6"
+                component="h2"
+              >
+                WELCOME BACK
+              </Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "300px",
+                  gap: "10px",
+                }}
+              >
+                <TextField
+                  id="username"
+                  label="username"
+                  sx={{
+                    backgroundColor: "#fefefe",
+                    borderRadius: "3px",
+                    "&:hover": {
+                      backgroundColor: "#ececec",
+                    },
+                  }}
+                  onChange={(e) => {
+                    setUsername(e.target.value);
+                  }}
+                ></TextField>
+                <TextField
+                  id="password"
+                  type="password"
+                  label="password"
+                  sx={{
+                    backgroundColor: "#fefefe",
+                    borderRadius: "3px",
+                    "&:hover": {
+                      backgroundColor: "#ececec",
+                    },
+                  }}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                ></TextField>
+                <Button
+                  sx={{
+                    backgroundColor: "#ffd94a",
+                    borderRadius: "3px",
+                    padding: "10px",
+                  }}
+                  onClick={() => {
+                    submitInformation();
+                  }}
+                >
+                  Login
+                </Button>
+              </Box>
+            </Box>
           </Box>
         </Modal>
       )}
-
       {registerAppear && (
         <Modal
           sx={{
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
-            margin: "50px",
+            alignItems: "center",
           }}
           open={open}
           aria-labelledby="modal-modal-title"
@@ -198,88 +276,123 @@ const Header = (props) => {
           <Box
             sx={{
               display: "flex",
-              justifyContent: "center",
+              justifyContent: "flex-start",
               flexDirection: "column",
               alignItems: "center",
-              height: "90%",
+              height: "70%",
               width: "70%",
               backgroundColor: "white",
               padding: "50px",
-              borderRadius: "7px",
+              borderRadius: "10px",
             }}
           >
-            <Box>
-              <img src={logo} width="100px" height="100px"></img>
+            <Box
+              sx={{
+                display: "flex",
+                height: "50px",
+                width: "100%",
+                flexDirection: "row",
+                justifyContent: "flex-end",
+                alignItems: "flex-start",
+              }}
+            >
+              <HighlightOffRoundedIcon
+                onClick={() => setRegisterAppear(false)}
+                sx={{
+                  color: "black",
+                  cursor: "pointer",
+                }}
+              ></HighlightOffRoundedIcon>
             </Box>
-            <Typography
-              sx={{ color: "#2d2d2d", padding: "30px" }}
-              id="welcome-text"
-              variant="h6"
-              component="h2"
-            >
-              Create new account
-            </Typography>
-            <TextField
-              id="full-name"
-              placeholder="Full name"
+
+            <Box
               sx={{
-                backgroundColor: "#7068f4",
-                borderRadius: "3px",
-                "&:hover": {
-                  backgroundColor: "#ececec",
-                },
-              }}
-            ></TextField>
-            <br></br>
-            <TextField
-              id="username"
-              placeholder="username"
-              sx={{
-                backgroundColor: "#7068f4",
-                borderRadius: "3px",
-                "&:hover": {
-                  backgroundColor: "#ececec",
-                },
-              }}
-            ></TextField>
-            <br></br>
-            <TextField
-              id="password"
-              placeholder="password"
-              sx={{
-                backgroundColor: "#7068f4",
-                borderRadius: "3px",
-                "&:hover": {
-                  backgroundColor: "#ececec",
-                },
-              }}
-            ></TextField>
-            <br></br>
-            <Button
-              sx={{
-                backgroundColor: "#ffd94a",
-                borderRadius: "3px",
-                padding: "10px",
-              }}
-              onClick={() => {
-                setRegisterAppear(false);
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
-              Register
-            </Button>
-            <br></br>
-            <Button
-              sx={{
-                backgroundColor: "#ffd94a",
-                borderRadius: "3px",
-                padding: "10px",
-              }}
-              onClick={() => {
-                setRegisterAppear(false);
-              }}
-            >
-              Google
-            </Button>
+              <Box>
+                <img src={logo} width="100px" height="100px"></img>
+              </Box>
+              <Typography
+                sx={{ color: "#2d2d2d", padding: "30px" }}
+                id="welcome-text"
+                variant="h6"
+                component="h2"
+              >
+                SAVE MONEY WITH US
+              </Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "300px",
+                  gap: "10px",
+                }}
+              >
+                <TextField
+                  id="username"
+                  label="username"
+                  sx={{
+                    backgroundColor: "#fefefe",
+                    borderRadius: "3px",
+                    "&:hover": {
+                      backgroundColor: "#ececec",
+                    },
+                  }}
+                  onChange={(e) => {
+                    setUsername(e.target.value);
+                  }}
+                ></TextField>
+                <TextField
+                  id="password"
+                  type="password"
+                  label="password"
+                  sx={{
+                    backgroundColor: "#fefefe",
+                    borderRadius: "3px",
+                    "&:hover": {
+                      backgroundColor: "#ececec",
+                    },
+                  }}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                ></TextField>
+                <Button
+                  sx={{
+                    backgroundColor: "#ffd94a",
+                    borderRadius: "3px",
+                    padding: "10px",
+                  }}
+                  onClick={() => {
+                    setRegisterAppear(false);
+                  }}
+                >
+                  REGISTER
+                </Button>
+                <Button
+                  sx={{
+                    backgroundColor: "#ffd94a",
+                    borderRadius: "3px",
+                    padding: "10px",
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  onClick={() => {
+                    setRegisterAppear(false);
+                  }}
+                >
+                  <GoogleIcon></GoogleIcon>
+                </Button>
+              </Box>
+            </Box>
           </Box>
         </Modal>
       )}

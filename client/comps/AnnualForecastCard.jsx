@@ -12,7 +12,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { faker } from "@faker-js/faker";
+import moment from "moment";
 
 ChartJS.register(
   CategoryScale,
@@ -56,14 +56,34 @@ export function AnnualForecastCard() {
     datasets: [
       {
         label: "SAVINGS PER MONTH",
-        data: labels.map(() =>
-          faker.datatype.number({ min: -1000, max: 1000 })
-        ),
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
     ],
   };
+
+  if (userInfo.transactions.length > 0 && userInfo.incomeArray.length > 0) {
+    // run through transaction array
+    for (let trans of userInfo.transactions) {
+      const month = moment(trans.dates).format("MMMM");
+      const index = labels.indexOf(month);
+      const amount = parseFloat(trans.amount.slice(1).split(",").join(""));
+      data.datasets[0].data[index] -= amount;
+    }
+
+    // run through income array
+    for (let income of userInfo.incomeArray) {
+      const month = moment(income.dates).format("MMMM");
+      const index = labels.indexOf(month);
+      const amount = parseFloat(income.amount.slice(1).split(",").join(""));
+      data.datasets[0].data[index] += amount;
+    }
+
+    for (let i = 0; i < data.datasets[0].data.length; i++) {
+      data.datasets[0].data[i] *= Math.random() * 2;
+    }
+  }
 
   return (
     <Paper
@@ -97,7 +117,7 @@ export function AnnualForecastCard() {
           justifyContent: "center",
         }}
       >
-        <Line options={options} data={data} />
+        {userInfo.loggedIn && <Line options={options} data={data} />}
       </Box>
     </Paper>
   );
