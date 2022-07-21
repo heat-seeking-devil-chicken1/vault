@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { InfoContext } from "../containers/MainContainer";
 import { Paper, Box, Typography } from "@mui/material";
 import {
   Chart as ChartJS,
@@ -23,7 +24,7 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
+const options = {
   responsive: true,
   plugins: {
     legend: {
@@ -47,19 +48,21 @@ const labels = [
   "December",
 ];
 
-const data = {
-  labels,
-  datasets: [
-    {
-      label: "SAVINGS PER MONTH",
-      data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-  ],
-};
-
 export function AnnualForecastCard() {
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "SAVINGS PER MONTH",
+        data: labels.map(() =>
+          faker.datatype.number({ min: -1000, max: 1000 })
+        ),
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
+    ],
+  };
+
   return (
     <Paper
       elevation={12}
