@@ -9,19 +9,21 @@ export function TransactionsCard() {
   const transactionArray = [];
   const transactions = userInfo.transactions;
 
+  const LIMIT = 35;
+  let current = 0;
   if (transactions.length > 0) {
     for (let trans of transactions) {
+      if (current >= LIMIT) break;
+
       transactionArray.push(
         <motion.div
           animate={{
             opacity: 1,
             width: "100%",
-            overflowY: "auto",
           }}
           initial={{
             opacity: 0,
             width: "100%",
-            overflowY: "auto",
           }}
           transition={{
             duration: 1.5,
@@ -34,7 +36,6 @@ export function TransactionsCard() {
               display: "flex",
               flexDirection: "row",
               width: "100%",
-              overflowY: "auto",
             }}
           >
             <Box
@@ -45,7 +46,7 @@ export function TransactionsCard() {
                 flexDirection: "row",
                 alignItems: "flex-start",
                 width: "100%",
-                overflowY: "auto",
+                paddingLeft: "20px",
               }}
             >
               <Typography>{trans.amount}</Typography>
@@ -58,6 +59,7 @@ export function TransactionsCard() {
                 flexDirection: "row",
                 alignItems: "flex-end",
                 justifyContent: "flex-end",
+                paddingRight: "20px",
               }}
             >
               <Typography>
@@ -67,6 +69,7 @@ export function TransactionsCard() {
           </Box>
         </motion.div>
       );
+      current += 1;
     }
   }
 
@@ -83,6 +86,7 @@ export function TransactionsCard() {
         justifyContent: "flex-start",
         padding: "10px",
         borderRadius: "20px",
+        overflow: "auto",
       }}
     >
       <Typography
@@ -101,7 +105,7 @@ export function TransactionsCard() {
             alignItems: "center",
             width: "100%",
             height: "100%",
-            overflowY: "auto",
+            overflow: "auto",
           }}
         >
           {transactionArray}
