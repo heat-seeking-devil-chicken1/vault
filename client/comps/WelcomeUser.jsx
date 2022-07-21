@@ -48,6 +48,10 @@ export function WelcomeUser() {
         sx={{
           display: "flex",
           width: "100%",
+          height: "20%",
+          border: ".5px dotted #8080808a",
+          backgroundColor: "#f6f6f6",
+          margin: "2px",
         }}
       >
         <Typography
@@ -62,6 +66,8 @@ export function WelcomeUser() {
           sx={{
             width: "50%",
             textAlign: "right",
+            color: "#7068f4",
+            fontWeight: "500"
           }}
         >
           {currencyFormatter.format(savings)}
@@ -106,8 +112,8 @@ export function WelcomeUser() {
       >
         <Avatar
           sx={{
-            height: "80px",
-            width: "80px",
+            height: "60px",
+            width: "60px",
           }}
           src={userInfo.avatar}
         ></Avatar>
@@ -118,7 +124,7 @@ export function WelcomeUser() {
               fontSize: "25px",
             }}
           >
-            Welcome, {userInfo.user_name}
+            {userInfo.user_name}
           </Typography>
         )}
         {/* blank for info of user */}
@@ -126,71 +132,75 @@ export function WelcomeUser() {
 
       <Divider />
       {/* appears when user logs into the application */}
-      <Box
-        sx={{
-          display: "flex",
-          width: "100%",
-          flexDirection: "column",
-          justifyContent: "flex-start",
-          alignItems: "center",
-          height: "100%",
-          gap: "10px",
-        }}
-      >
-        <Typography
-          sx={{
-            fontWeight: 600,
-          }}
-        >
-          SAVINGS GOALS
-        </Typography>
+      {userInfo.loggedIn && (
         <Box
-          className="goalsForm"
-          elevation={3}
           sx={{
-            width: "100%",
-            height: "max-content",
-            paddingTop: "20px",
-            paddingBottom: "20px",
             display: "flex",
-            justifyContent: "center",
+            width: "100%",
+            flexDirection: "column",
+            justifyContent: "flex-start",
             alignItems: "center",
+            height: "100%",
+            gap: "10px",
           }}
         >
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DesktopDatePicker
-              label="Transaction Date"
-              inputFormat="MM/dd/yyyy"
-              value={currentDate}
-              onChange={(newValue) => setCurrentDate(newValue)}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </LocalizationProvider>
-          <TextField
-            label="Goals"
-            onChange={(e) => {
-              setSavings(e.target.value);
-            }}
-          ></TextField>
-          <Button
-            className="goalsButton"
-            onClick={() => {
-              registerSavings(currentDate, savings);
+          <Typography
+            sx={{
+              fontWeight: 600,
             }}
           >
-            SUBMIT
-          </Button>
+            SAVINGS GOALS
+          </Typography>
+          <Box
+            className="goalsForm"
+            elevation={3}
+            sx={{
+              width: "100%",
+              height: "max-content",
+              paddingTop: "20px",
+              paddingBottom: "20px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DesktopDatePicker
+                label="Transaction Date"
+                inputFormat="MM/dd/yyyy"
+                value={currentDate}
+                onChange={(newValue) => setCurrentDate(newValue)}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </LocalizationProvider>
+            <TextField
+              label="Goals"
+              onChange={(e) => {
+                setSavings(e.target.value);
+              }}
+            ></TextField>
+            <Button
+              className="goalsButton"
+              onClick={() => {
+                registerSavings(currentDate, savings);
+              }}
+            >
+              SUBMIT
+            </Button>
+          </Box>
+          <Box
+            elevation={3}
+            sx={{
+              width: "90%",
+              height: "30%",
+              overflow: "auto",
+              marginTop: "-10px",   
+            }}
+          >
+            {listSavings}
+          </Box>
         </Box>
-        <Box
-          elevation={3}
-          sx={{
-            width: "100%",
-            height: "100%",
-          }}
-        >
-          {listSavings}
-        </Box>
-      </Box>
+      )}
     </Box>
   );
 }

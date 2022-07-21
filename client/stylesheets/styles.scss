@@ -4,7 +4,10 @@ $mediumGrey: #ececec;
 $darkGrey: #d0d0d0;
 $textGrey: #2d2d2d;
 $logoPurple: #7068f4;
+$logoMidPurple: #7b1fa2;
+$logoMidPink: #a21f76;
 $logoPink: #ff64b4;
+$logoOrange: #ff7d45;
 $logoYellow: #ffd94a;
 
 // $quicksand: 'Quicksand'
@@ -106,7 +109,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 40px 0px 40px;
+  padding: 0px 30px;
   background-color: #7068F4;
   height: 100%;
   text-transform: uppercase;
@@ -187,8 +190,8 @@ body {
 
 .cardTitle {
   background: #b568f4;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   text-align: center;
   color: white;
   font-weight: 400;
@@ -199,6 +202,7 @@ body {
 .gridCard {
   box-shadow: 1px 0px 15px #00000020 !important;
   transition: 1s;
+  border-radius: 10px;
 }
 
 .gridCard:hover {
@@ -208,6 +212,7 @@ body {
 
 .goalsForm {
   display: grid !important;
+  margin-top: 20px;
 }
 
 .goalsButton {
@@ -231,4 +236,23 @@ body {
   width: 100%;
   justify-content: space-between;
   border-bottom: 1px dotted #8080808a;
+}
+
+.MuiAvatar-circular {
+  box-shadow: 1px 0px 15px #00000030;
+  margin: 20px 0px 0 -15px;
+}
+
+header {
+  padding: 0px 20px;
+}
+
+.MuiBox-root.css-5wxq8j {
+  width: 85%;
+  height: 30%;
+  overflow: auto;
+  margin-top: -10px;
+  margin-left: -15px;
+  overflow-x: hidden;
+  padding-right: 10px;
 }

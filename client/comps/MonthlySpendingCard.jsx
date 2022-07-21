@@ -58,13 +58,15 @@ export function MonthlySpendingCard() {
       {
         label: "Expenses",
         data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        backgroundColor: "rgba(123, 31, 162, 0.4)",
+        borderColor: "rgba(123, 31, 162, 1)",
         borderWidth: 1,
       },
       {
         label: "Earnings",
         data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        backgroundColor: "rgba(255, 125, 69, 0.4)",
+        borderColor: "rgba(255, 125, 69, 1)",
         borderWidth: 1,
       },
     ],
@@ -103,7 +105,8 @@ export function MonthlySpendingCard() {
           MONTHLY SPENDING
         </Box>
       </Typography>
-      <Box className="monthlyChart">
+      <Box className="monthlyChart"
+      >
         {userInfo.loggedIn && (
           <Bar options={options} redraw={true} data={data} />
         )}

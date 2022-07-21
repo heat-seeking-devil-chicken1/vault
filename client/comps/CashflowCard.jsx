@@ -22,8 +22,8 @@ export function CashflowCard() {
     datasets: [
       {
         data: [spending, income],
-        backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
-        borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
+        backgroundColor: ["rgba(123, 31, 162, 0.4)", "rgba(255, 125, 69, 0.4)"],
+        borderColor: ["rgba(123, 31, 162, 1)", "rgba(255, 125, 69, 1)"],
         borderWidth: 1,
       },
     ],
@@ -51,7 +51,7 @@ export function CashflowCard() {
         }}
       >
         <Box className="cardTitle">
-          CASH FLOW
+          ANNUAL CASH FLOW
         </Box>
       </Typography>
       <Box className="cashChart">
