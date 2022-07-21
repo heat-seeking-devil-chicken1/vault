@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { InfoContext } from "../containers/MainContainer";
+import { InfoContext } from "../containers/MainContainer.jsx";
 import { Paper, Box, Typography } from "@mui/material";
 import {
   Chart as ChartJS,
@@ -49,6 +49,8 @@ const labels = [
 ];
 
 export function AnnualForecastCard() {
+  const [userInfo, setUserInfo] = useContext(InfoContext);
+
   const data = {
     labels,
     datasets: [
