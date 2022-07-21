@@ -42,14 +42,19 @@ export function WelcomeUser() {
           height: "10%",
         }}
       >
-        <Avatar src={userInfo.avatar}></Avatar>
-        <Typography
+        <Avatar sx={{
+          height: "80px",
+          width: "80px",
+        }}
+        src={userInfo.avatar}></Avatar>
+        {userInfo.loggedIn && <Typography
           sx={{
-            fontWeight: 600,
+            fontWeight: "600",
+            fontSize: "25px",
           }}
         >
-          {userInfo.user_name}
-        </Typography>
+          Welcome, {userInfo.user_name}
+        </Typography>}
         {/* blank for info of user */}
       </Box>
 

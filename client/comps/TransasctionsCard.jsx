@@ -56,54 +56,24 @@ export function TransactionsCard() {
               <div className="amount">
                 <Typography>{trans.amount}</Typography>
               </div>
-            {/* </Box> */}
-            {/* <Box
-              sx={{
-                width: "50%",
-                height: "max-content",
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "flex-end",
-                justifyContent: "flex-end",
-                paddingRight: "20px",
-              }}
-            > */}
               <div className="date">
                 <Typography>
                   {moment(trans.dates).format("MMMM DD, YYYY")}
                 </Typography>
               </div>
-            {/* </Box> */}
-            {/* <Box
-              sx={{
-                width: "50%",
-                height: "max-content",
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "flex-start",
-                width: "100%",
-                paddingLeft: "20px",
-              }}
-            > */}
               <div className="merchant">
                 <Typography>{trans.merchant}</Typography>
               </div>
-            {/* </Box> */}
-            {/* <Box
-              sx={{
-                width: "50%",
-                height: "max-content",
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "flex-start",
-                width: "100%",
-                paddingLeft: "20px",
-              }}
-            > */}
               <div className="category">
-                <Typography>{trans.cat_name}</Typography>
+                <Typography 
+                  sx={{
+                    fontTransform: "uppercase",
+                    color: "$mediumgrey",
+                    paddingLeft: "3px",
+                    fontSize: "15px",
+                  }}
+                >{trans.cat_name}</Typography>
               </div>
-            {/* </Box> */}
           </div>
           </Box>
         </motion.div>
