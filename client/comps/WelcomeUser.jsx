@@ -17,7 +17,7 @@ import { Sailing } from "@mui/icons-material";
 
 export function WelcomeUser() {
   const [userInfo, setUserInfo] = useContext(InfoContext);
-  const [currentDate, setCurrentDate] = useState("2022-07-12");
+  const [currentDate, setCurrentDate] = useState("2022-07-22");
   const [savings, setSavings] = useState(0);
   const [listSavings, setListSavings] = useState([]);
 
@@ -30,13 +30,18 @@ export function WelcomeUser() {
     const arraySavings = [];
     const currentSavingsGoal = [];
     for (let comp of listSavings) {
-      currentSavingsGoal.push({
-        amount: savings,
-        date: date,
-      });
       // get current listings
       arraySavings.push(comp);
     }
+
+    for (let saves of userInfo.savingsGoal) {
+      console.log(saves);
+      currentSavingsGoal.push({
+        amount: saves.amount,
+        date: saves.date,
+      });
+    }
+
     // add new listings
     arraySavings.push(
       <Box
@@ -99,19 +104,23 @@ export function WelcomeUser() {
           height: "10%",
         }}
       >
-        <Avatar sx={{
-          height: "80px",
-          width: "80px",
-        }}
-        src={userInfo.avatar}></Avatar>
-        {userInfo.loggedIn && <Typography
+        <Avatar
           sx={{
-            fontWeight: "600",
-            fontSize: "25px",
+            height: "80px",
+            width: "80px",
           }}
-        >
-          Welcome, {userInfo.user_name}
-        </Typography>}
+          src={userInfo.avatar}
+        ></Avatar>
+        {userInfo.loggedIn && (
+          <Typography
+            sx={{
+              fontWeight: "600",
+              fontSize: "25px",
+            }}
+          >
+            Welcome, {userInfo.user_name}
+          </Typography>
+        )}
         {/* blank for info of user */}
       </Box>
 
