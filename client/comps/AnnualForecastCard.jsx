@@ -69,36 +69,36 @@ export function AnnualForecastCard() {
     ],
   };
 
-  useEffect(() => {
-    if (userInfo.transactions.length > 0 && userInfo.incomeArray.length > 0) {
-      // run through transaction array
-      for (let trans of userInfo.transactions) {
-        const month = moment(trans.dates).format("MMMM");
-        const index = labels.indexOf(month);
-        const amount = parseFloat(trans.amount.slice(1).split(",").join(""));
-        data.datasets[0].data[index] -= amount;
-      }
+  useEffect(() => {}, [userInfo]);
 
-      // run through income array
-      for (let income of userInfo.incomeArray) {
-        const month = moment(income.dates).format("MMMM");
-        const index = labels.indexOf(month);
-        const amount = parseFloat(income.amount.slice(1).split(",").join(""));
-        data.datasets[0].data[index] += amount;
-      }
-
-      if (userInfo.savingsGoal) {
-        for (let trans of userInfo.savingsGoal) {
-          const month = moment(trans.date).format("MMMM");
-          const index = labels.indexOf(month);
-          const amount = parseFloat(trans.amount);
-          data.datasets[1].data[index] += amount;
-        }
-
-        console.log(data.datasets[1].data);
-      }
+  if (userInfo.transactions.length > 0 && userInfo.incomeArray.length > 0) {
+    // run through transaction array
+    for (let trans of userInfo.transactions) {
+      const month = moment(trans.dates).format("MMMM");
+      const index = labels.indexOf(month);
+      const amount = parseFloat(trans.amount.slice(1).split(",").join(""));
+      data.datasets[0].data[index] -= amount;
     }
-  }, [userInfo]);
+
+    // run through income array
+    for (let income of userInfo.incomeArray) {
+      const month = moment(income.dates).format("MMMM");
+      const index = labels.indexOf(month);
+      const amount = parseFloat(income.amount.slice(1).split(",").join(""));
+      data.datasets[0].data[index] += amount;
+    }
+
+    if (userInfo.savingsGoal) {
+      for (let trans of userInfo.savingsGoal) {
+        const month = moment(trans.date).format("MMMM");
+        const index = labels.indexOf(month);
+        const amount = parseFloat(trans.amount);
+        data.datasets[1].data[index] += amount;
+      }
+
+      console.log(data.datasets[1].data);
+    }
+  }
 
   return (
     <Paper

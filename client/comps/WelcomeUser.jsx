@@ -30,13 +30,14 @@ export function WelcomeUser() {
     const arraySavings = [];
     const currentSavingsGoal = [];
     for (let comp of listSavings) {
-      currentSavingsGoal.push({
-        amount: savings,
-        date: date,
-      });
       // get current listings
       arraySavings.push(comp);
     }
+    currentSavingsGoal.push({
+        amount: savings,
+        date: date,
+      });
+
     // add new listings
     arraySavings.push(
       <Box
