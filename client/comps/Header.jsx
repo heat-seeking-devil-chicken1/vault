@@ -40,6 +40,7 @@ const Header = (props) => {
       allSum: result.allSum,
       incomeArray: result.incomeArray,
       totalIncome: result.totalIncome,
+      savingsGoal: [],
     });
     setLoginAppear(false);
     setUserLoggedIn(true);
@@ -392,22 +393,25 @@ const Header = (props) => {
                 >
                   REGISTER
                 </Button>
-                <Button
-                  sx={{
-                    backgroundColor: "#ffd94a",
-                    borderRadius: "3px",
-                    padding: "10px",
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                  onClick={() => {
-                    setRegisterAppear(false);
-                  }}
-                >
-                  <GoogleIcon></GoogleIcon>
-                </Button>
+                <a href="/auth/google">
+                  <Button
+                    sx={{
+                      backgroundColor: "#ffd94a",
+                      borderRadius: "3px",
+                      padding: "10px",
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      width: "100%",
+                    }}
+                    onClick={() => {
+                      setRegisterAppear(false);
+                    }}
+                  >
+                    <GoogleIcon></GoogleIcon>
+                  </Button>
+                </a>
               </Box>
             </Box>
           </Box>

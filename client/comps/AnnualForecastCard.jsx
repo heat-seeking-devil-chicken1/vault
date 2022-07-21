@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { InfoContext } from "../containers/MainContainer.jsx";
 import { Paper, Box, Typography } from "@mui/material";
 import {
@@ -55,35 +55,50 @@ export function AnnualForecastCard() {
     labels,
     datasets: [
       {
-        label: "SAVINGS PER MONTH",
+        label: "EXPECTED SAVINGS PER MONTH",
         data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
+      {
+        label: "SAVINGS GOAL",
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        borderColor: "blue",
+        backgroundColor: "yellow",
+      },
     ],
   };
 
-  if (userInfo.transactions.length > 0 && userInfo.incomeArray.length > 0) {
-    // run through transaction array
-    for (let trans of userInfo.transactions) {
-      const month = moment(trans.dates).format("MMMM");
-      const index = labels.indexOf(month);
-      const amount = parseFloat(trans.amount.slice(1).split(",").join(""));
-      data.datasets[0].data[index] -= amount;
-    }
+  useEffect(() => {
+    if (userInfo.transactions.length > 0 && userInfo.incomeArray.length > 0) {
+      // run through transaction array
+      for (let trans of userInfo.transactions) {
+        const month = moment(trans.dates).format("MMMM");
+        const index = labels.indexOf(month);
+        const amount = parseFloat(trans.amount.slice(1).split(",").join(""));
+        data.datasets[0].data[index] -= amount;
+      }
 
-    // run through income array
-    for (let income of userInfo.incomeArray) {
-      const month = moment(income.dates).format("MMMM");
-      const index = labels.indexOf(month);
-      const amount = parseFloat(income.amount.slice(1).split(",").join(""));
-      data.datasets[0].data[index] += amount;
-    }
+      // run through income array
+      for (let income of userInfo.incomeArray) {
+        const month = moment(income.dates).format("MMMM");
+        const index = labels.indexOf(month);
+        const amount = parseFloat(income.amount.slice(1).split(",").join(""));
+        data.datasets[0].data[index] += amount;
+      }
 
-    for (let i = 0; i < data.datasets[0].data.length; i++) {
-      data.datasets[0].data[i] *= Math.random() * 2;
+      if (userInfo.savingsGoal) {
+        for (let trans of userInfo.savingsGoal) {
+          const month = moment(trans.date).format("MMMM");
+          const index = labels.indexOf(month);
+          const amount = parseFloat(trans.amount);
+          data.datasets[1].data[index] += amount;
+        }
+
+        console.log(data.datasets[1].data);
+      }
     }
-  }
+  }, [userInfo]);
 
   return (
     <Paper

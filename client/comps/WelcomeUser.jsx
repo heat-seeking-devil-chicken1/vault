@@ -6,17 +6,74 @@ import {
   Avatar,
   Box,
   Typography,
-  InputAdornment,
+  Button,
 } from "@mui/material";
 import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { useContext } from "react";
 import { InfoContext } from "../containers/MainContainer.jsx";
 import moment from "moment";
+import { Sailing } from "@mui/icons-material";
 
 export function WelcomeUser() {
   const [userInfo, setUserInfo] = useContext(InfoContext);
   const [currentDate, setCurrentDate] = useState("2022-07-12");
+  const [savings, setSavings] = useState(0);
+  const [listSavings, setListSavings] = useState([]);
+
+  let currencyFormatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+
+  function registerSavings(date, savings) {
+    const arraySavings = [];
+    const currentSavingsGoal = [];
+    for (let comp of listSavings) {
+      currentSavingsGoal.push({
+        amount: savings,
+        date: date,
+      });
+      // get current listings
+      arraySavings.push(comp);
+    }
+    // add new listings
+    arraySavings.push(
+      <Box
+        sx={{
+          display: "flex",
+          width: "100%",
+        }}
+      >
+        <Typography
+          sx={{
+            width: "50%",
+            textAlign: "left",
+          }}
+        >
+          {moment(currentDate).format("MMMM/DD/yyyy")}
+        </Typography>
+        <Typography
+          sx={{
+            width: "50%",
+            textAlign: "right",
+          }}
+        >
+          {currencyFormatter.format(savings)}
+        </Typography>
+      </Box>
+    );
+    currentSavingsGoal.push({
+      amount: savings,
+      date: date,
+    });
+    setListSavings(arraySavings);
+    setUserInfo({
+      ...userInfo,
+      savingsGoal: currentSavingsGoal,
+    });
+  }
+
   return (
     <Paper
       elevation={12}
@@ -60,34 +117,69 @@ export function WelcomeUser() {
 
       <Divider />
       {/* appears when user logs into the application */}
-      <Paper
-        elevation={3}
+      <Box
         sx={{
+          display: "flex",
           width: "100%",
-          height: "30%",
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          height: "100%",
+          gap: "10px",
         }}
       >
-        <TextField
-          label="Amount"
-          id="filled-start-adornment"
-          InputProps={{
-            startAdornment: <InputAdornment position="start">$</InputAdornment>,
+        <Typography
+          sx={{
+            fontWeight: 600,
           }}
-          variant="filled"
-        ></TextField>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DesktopDatePicker
-            label="Transaction Date"
-            value={currentDate}
-            inputFormat="MM/dd/yyyy"
-            onChange={(newValue) => {
-              console.log(moment(newValue).format("YYYY-MM-DD"));
-              setCurrentDate(newValue);
+        >
+          SAVINGS GOALS
+        </Typography>
+        <Paper
+          elevation={3}
+          sx={{
+            width: "100%",
+            height: "max-content",
+            paddingTop: "20px",
+            paddingBottom: "20px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DesktopDatePicker
+              label="Transaction Date"
+              inputFormat="MM/dd/yyyy"
+              value={currentDate}
+              onChange={(newValue) => setCurrentDate(newValue)}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
+          <TextField
+            label="Goals"
+            onChange={(e) => {
+              setSavings(e.target.value);
             }}
-            renderInput={(params) => <TextField {...params} />}
-          ></DesktopDatePicker>
-        </LocalizationProvider>
-      </Paper>
+          ></TextField>
+          <Button
+            onClick={() => {
+              registerSavings(currentDate, savings);
+            }}
+          >
+            SUBMIT
+          </Button>
+        </Paper>
+        <Paper
+          elevation={3}
+          sx={{
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          {listSavings}
+        </Paper>
+      </Box>
     </Paper>
   );
 }
