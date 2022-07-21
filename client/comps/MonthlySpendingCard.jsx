@@ -24,6 +24,7 @@ ChartJS.register(
 
 const options = {
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       position: "top",
@@ -98,10 +99,11 @@ export function MonthlySpendingCard() {
       >
         MONTHLY SPENDING
       </Typography>
-
-      {userInfo.loggedIn && (
-        <Bar options={options} redraw={true} data={data} />
-      )}
+      <Box className="monthlyChart">
+        {userInfo.loggedIn && (
+          <Bar options={options} redraw={true} data={data} />
+        )}
+      </Box>
     </Box>
   );
 }
