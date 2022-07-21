@@ -54,6 +54,7 @@ export function MainContainer() {
     gridTemplateColumns: "1fr 1fr 1fr 1fr",
     gridTemplateRows: "50% 50%",
     gap: "20px",
+    height: "87vh",
     padding: "20px",
     gridTemplateAreas: ` 
       "Profile Monthly Category Transactions"

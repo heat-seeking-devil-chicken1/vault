@@ -76,7 +76,7 @@ export function TransactionsCard() {
   return (
     <Box className="transactionsList" sx={{
       maxHeight: "400px",
-      overflowY: "auto"
+      // overflowY: "auto"
     }}>
       <Typography
         sx={{
