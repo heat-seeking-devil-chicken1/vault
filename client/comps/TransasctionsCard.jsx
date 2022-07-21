@@ -28,17 +28,21 @@ export function TransactionsCard() {
           transition={{
             duration: 1.5,
           }}
-        >
+        > 
           <Box
             sx={{
               width: "100%",
               height: "max-content",
               display: "flex",
+              justifyContent: "center",
+              alignContent: "stretch",
               flexDirection: "row",
-              width: "100%",
+              padding: "2px",
+              borderRadius: "3px"
             }}
           >
-            <Box
+            <div id="transaction-container">
+            {/* <Box
               sx={{
                 width: "50%",
                 height: "max-content",
@@ -48,10 +52,12 @@ export function TransactionsCard() {
                 width: "100%",
                 paddingLeft: "20px",
               }}
-            >
-              <Typography>{trans.amount}</Typography>
-            </Box>
-            <Box
+            > */}
+              <div className="amount">
+                <Typography>{trans.amount}</Typography>
+              </div>
+            {/* </Box> */}
+            {/* <Box
               sx={{
                 width: "50%",
                 height: "max-content",
@@ -61,11 +67,44 @@ export function TransactionsCard() {
                 justifyContent: "flex-end",
                 paddingRight: "20px",
               }}
-            >
-              <Typography>
-                {moment(trans.dates).format("MMMM DD, YYYY")}
-              </Typography>
-            </Box>
+            > */}
+              <div className="date">
+                <Typography>
+                  {moment(trans.dates).format("MMMM DD, YYYY")}
+                </Typography>
+              </div>
+            {/* </Box> */}
+            {/* <Box
+              sx={{
+                width: "50%",
+                height: "max-content",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "flex-start",
+                width: "100%",
+                paddingLeft: "20px",
+              }}
+            > */}
+              <div className="merchant">
+                <Typography>{trans.merchant}</Typography>
+              </div>
+            {/* </Box> */}
+            {/* <Box
+              sx={{
+                width: "50%",
+                height: "max-content",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "flex-start",
+                width: "100%",
+                paddingLeft: "20px",
+              }}
+            > */}
+              <div className="category">
+                <Typography>{trans.cat_name}</Typography>
+              </div>
+            {/* </Box> */}
+          </div>
           </Box>
         </motion.div>
       );

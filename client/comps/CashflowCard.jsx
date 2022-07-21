@@ -18,7 +18,7 @@ export function CashflowCard() {
   }
 
   const data = {
-    labels: ["SPENDING", "EARNIGS"],
+    labels: ["SPENDING", "EARNINGS"],
     datasets: [
       {
         data: [spending, income],
