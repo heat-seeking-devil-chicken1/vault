@@ -25,7 +25,7 @@ dataController.getCategories = async (req, res, next) => {
 dataController.getTransactions = async (req, res, next) => {
   try {
     const user_id = res.locals.userInfo.id;
-    const sql_query = "select amount, dates FROM spending where user_id = $1";
+    const sql_query = "select user_id, dates, merchant, cat_name, amount from spending s join category c on s.category_id = c.cat_id where user_id=$1;";
     const values = [user_id];
     const result = await db.query(sql_query, values);
     const transactionArray = result.rows;
